@@ -1,22 +1,20 @@
 {
-  "entity": [
+  "todo": [
     {
-      "key1": "valueA",
-      "key2": "valueB"
+      "name": "Make a todo app",
+      "status": "Working on it",
+      "urgency": "High",
+      "impact": "High",
+      "effort": "High",
+      "notes": "This is a note"
     },
     {
-      "key1": "valueC",
-      "key2": "valueD"
-    }
-  ],
-  "anotherEntity": [
-    {
-      "key3": "valueA",
-      "key4": "valueB"
-    },
-    {
-      "key3": "valueC",
-      "key4": "valueD"
+      "name": "Publish to github",
+      "status": "Todo",
+      "urgency": "Medium",
+      "impact": "Medium",
+      "effort": "Low",
+      "notes": "https://www.github.com/crrood"
     }
   ]
 }

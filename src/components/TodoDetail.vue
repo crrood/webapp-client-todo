@@ -1,6 +1,6 @@
 <template>
   <div class="grid justify-center mt-4">
-    <div class="text-xl font-bold">Entity</div>
+    <div class="text-xl font-bold">Todo</div>
     {{ state.data }}
   </div>
 </template>
@@ -19,16 +19,16 @@ const state = reactive({
 
 // initialize
 const axios = inject('axios');
-if (route.params.entity) {
-  state.data = JSON.parse(route.params.entity);
+if (route.params.todo) {
+  state.data = JSON.parse(route.params.todo);
 }
 else {
-  getEntity(route.params.id);
+  getTodo(route.params.id);
 }
 
 // methods
-function getEntity(id) {
-  const path = '/entity/' + id;
+function getTodo(id) {
+  const path = '/todo/' + id;
   axios.get(path)
     .then(res => {
       state.data = res.data;
@@ -58,7 +58,7 @@ function toggleInputs() {
 }
 
 function saveData() {
-  const path = '/entity/' + state.data._id.$oid;
+  const path = '/todo/' + state.data._id.$oid;
   axios.put(path, state.data)
     .then(res => {
       console.log(res.data);

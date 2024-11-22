@@ -1,7 +1,7 @@
 <template>
   <div class="bg-primary">
-    <EntityListEntry v-for="entity in state.entities" :key="entity._id.$oid"
-      :entity="entity" />
+    <TodoListEntry v-for="todo in state.entities" :key="todo._id.$oid"
+      :todo="todo" />
   </div>
   <!-- Previous / next page buttons -->
   <!-- Icons from https://www.flaticon.com/uicons/get-started -->
@@ -24,7 +24,7 @@
 
 <script setup>
 import { inject, reactive, watch } from 'vue';
-import EntityListEntry from './EntityListEntry.vue';
+import TodoListEntry from './TodoListEntry.vue';
 
 const state = reactive({
   entities: [],
@@ -35,12 +35,12 @@ watch(() => state.pageNumber, () => {
   if (state.pageNumber < 0) {
     state.pageNumber = 0;
   }
-  getEntityList(state.pageNumber);
+  getTodoList(state.pageNumber);
 });
 
 const axios = inject('axios');
-function getEntityList(pageNumber) {
-  const path = '/entity?page=' + pageNumber
+function getTodoList(pageNumber) {
+  const path = '/todo?page=' + pageNumber
   axios.get(path)
     .then(res => {
       state.entities = res.data;
@@ -50,6 +50,6 @@ function getEntityList(pageNumber) {
     })
 }
 
-getEntityList(state.pageNumber);
+getTodoList(state.pageNumber);
 
 </script>
