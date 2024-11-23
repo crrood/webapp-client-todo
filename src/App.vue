@@ -4,6 +4,6 @@
 </template>
 
 <script setup>
-import NavbarTop from "./components/NavbarTop.vue"
+import NavbarTop from "./components/NavbarTop.vue";
 
 </script>
