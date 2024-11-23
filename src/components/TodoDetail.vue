@@ -1,6 +1,5 @@
 <template>
-  <div class="grid justify-center mt-4">
-    <div class="text-xl font-bold">Todo</div>
+  <div class="grid justify-center mt-4 text-white">
     {{ state.data }}
   </div>
 </template>
