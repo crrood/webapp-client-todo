@@ -1,19 +1,51 @@
 <template>
-  <div class="grid grid-cols-8 space-x-4 m-4 p-4 text-white border-2 border-white" 
-      @click="router.push({ 
-      name: 'Todo',
-      params: { id: todo._id.$oid, todo: JSON.stringify(todo) }})">
-    <div class="col-span-2">{{ todo.name }}</div>
+  <div @click="handleClick" class="grid grid-cols-9 space-x-4 m-4 p-4 text-white border-2 border-white">
+    <div class="col-span-2" id="name">
+      <span v-if="!editing['name']">{{ todo.name }}</span>
+      <input v-if="editing['name']" v-model="todo.name" class="bg-transparent
+      border-b-2 border-white text-white" />
+    </div>
     <div class="text-center">{{ todo.status }}</div>
     <div class="text-center">{{ todo.urgency }}</div>
     <div class="text-center">{{ todo.impact }}</div>
     <div class="text-center">{{ todo.effort }}</div>
     <div class="col-span-2">{{ todo.notes }}</div>
+    <div>
+      <button class="btn-primary"
+        @click="router.push({ 
+        name: 'Todo',
+        params: { id: todo._id.$oid, todo: JSON.stringify(todo) }})">
+          Edit
+      </button>
+    </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import router from '../router';
 
-defineProps(['todo']);
+const props = defineProps(['todo']);
+
+// Create reactive object for keeping track of which field is being edited
+const editingProto = {};
+for (const key in props.todo) {
+  editingProto[key] = false;
+}
+const editing = ref(editingProto);
+
+function handleClick(event) {
+  resetEditing();
+  const parent = event.target.parentElement;
+  if (parent) {
+    editing.value[parent.id] = true;
+  }
+};
+
+function resetEditing() {
+  for (const key in editing.value) {
+    editing.value[key] = false;
+  }
+}
+
 </script>
