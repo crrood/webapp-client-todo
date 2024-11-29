@@ -24,17 +24,9 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import router from "../router";
 
 const props = defineProps(["todo"]);
-
-// Create reactive object for keeping track of which field is being edited
-const editingProto = {};
-for (const key in props.todo) {
-  editingProto[key] = false;
-}
-const editing = ref(editingProto);
 
 function inputClicked(event) {
   // TODO: make the clickable area for each element bigger
@@ -42,12 +34,6 @@ function inputClicked(event) {
   event.target.focus();
   event.target.select();
 };
-
-function resetEditing() {
-  for (const key in editing.value) {
-    editing.value[key] = false;
-  }
-}
 
 function inputUnfocused(event) {
   // TODO: save on active field losing focus
