@@ -1,14 +1,17 @@
 <template>
-  <div @click="handleClick" class="grid grid-cols-9 space-x-4 m-4 p-4 text-white border-2 border-white">
-    <div class="col-span-2" id="name">
-      <input :id="todo._id.$oid + '-name'" v-model="todo.name" readonly
-        @focusout="nameUnfocused"/>
+  <div class="grid grid-cols-9 space-x-4 m-4 p-4 text-white border-2 border-white">
+    <div class="col-span-2">
+      <input v-model="todo.name" readonly
+        @click="inputClicked" @focusout="inputUnfocused"/>
     </div>
     <div class="text-center">{{ todo.status }}</div>
     <div class="text-center">{{ todo.urgency }}</div>
     <div class="text-center">{{ todo.impact }}</div>
     <div class="text-center">{{ todo.effort }}</div>
-    <div class="col-span-2">{{ todo.notes }}</div>
+    <div class="col-span-2" readonly>
+      <input v-model="todo.notes" readonly
+        @click="inputClicked" @focusout="inputUnfocused"/>
+    </div>
     <div>
       <button class="btn-primary"
         @click="router.push({ 
@@ -33,22 +36,11 @@ for (const key in props.todo) {
 }
 const editing = ref(editingProto);
 
-function handleClick(event) {
+function inputClicked(event) {
   // TODO: make the clickable area for each element bigger
-  const parent = event.target.parentElement;
-  if (parent) {
-    if (!editing.value[parent.id]) {
-      resetEditing();
-      editing.value[parent.id] = true;
-
-      if (parent.id === "name") {
-        const inputEl = parent.querySelector("input");
-        inputEl.readOnly = false;
-        inputEl.focus();
-        inputEl.select();
-      }
-    }
-  }
+  event.target.readOnly = false;
+  event.target.focus();
+  event.target.select();
 };
 
 function resetEditing() {
@@ -57,7 +49,7 @@ function resetEditing() {
   }
 }
 
-function nameUnfocused(event) {
+function inputUnfocused(event) {
   // TODO: save on active field losing focus
   event.target.readOnly = true;
 }
