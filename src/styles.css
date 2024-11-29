@@ -7,23 +7,24 @@ a {
   @apply font-bold hover:text-slate-200;
 }
 
-:disabled {
-  @apply border-transparent;
-}
-
-input[type='number']:disabled::-webkit-inner-spin-button, input[type='number']:disabled::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-}
-
-input[type='number']:disabled {
-  -moz-appearance: textfield;
-}
-
-/* CUSTOM CLASSES */
+/* BUTTONS */
 .btn-primary {
   @apply bg-secondary hover:bg-secondary-dark p-2 rounded text-white font-bold;
 }
 
 .btn-warning {
   @apply bg-orange-500 hover:bg-orange-600 rounded text-white font-bold;
+}
+
+/* INPUT */
+input {
+  @apply bg-transparent border-b-2 border-white text-white
+}
+
+input:read-only {
+  @apply bg-transparent border-b-2 border-transparent text-white;
+}
+
+input:focus {
+  outline: none;
 }
