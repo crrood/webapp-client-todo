@@ -24,6 +24,7 @@
 </template>
 
 <script setup>
+import { defineProps, inject } from 'vue';
 import router from "../router";
 
 const props = defineProps(["todo"]);
@@ -38,6 +39,19 @@ function inputClicked(event) {
 function inputUnfocused(event) {
   // TODO: save on active field losing focus
   event.target.readOnly = true;
+  saveData();
 }
 
+function saveData() {
+  const path = "/todo";
+  axios.put(path, props.todo)
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+const axios = inject('axios');
 </script>
