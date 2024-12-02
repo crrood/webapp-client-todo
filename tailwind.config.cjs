@@ -14,5 +14,16 @@ module.exports = {
       }
     },
   },
+  safelist: [
+    '.bg-yellow-sl',
+    '.bg-red-sl',
+    '.bg-green-sl',
+    '.bg-purple-sl',
+    '.bg-light-gray-sl',
+    '.bg-dark-gray-sl',
+    '.bg-blue-sl',
+    '.bg-light-blue-sl',
+    '.bg-dark-blue-sl',
+  ],
   plugins: [],
 }

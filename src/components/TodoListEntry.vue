@@ -6,8 +6,8 @@
     </div>
     <div class="text-center">
       <select v-model="todo.status">
-        <option v-for="option in columns.value[1].options" 
-          :key="option.value" :value="option.value">
+        <option v-for="option in columns.value[1].options"
+          :class="'bg-' + option.color + '-sl'" :key="option.value" :value="option.value">
           {{ option.value }}
         </option>
       </select>
@@ -40,10 +40,11 @@ const props = defineProps(["todo", "columns"]);
 /*
 Render item
 */
-console.log(props.columns);
-console.log(props.columns.value);
-console.log(props.columns.value[1].options)
-console.log(props.columns.value[1].options[0].value)
+// console.log(props.columns);
+// console.log(props.columns.value);
+// console.log(props.columns.value[1].options)
+// console.log(props.columns.value[1].options[0].value)
+// props.columns.value[1].options[0].color = "yellow";
 
 /*
 Input editing

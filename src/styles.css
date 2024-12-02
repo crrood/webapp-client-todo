@@ -34,5 +34,19 @@ select {
 }
 
 option {
-  @apply bg-primary border-none text-white;
+  /* @apply bg-primary border-none text-white; */
 }
+
+/* COLORS */
+/* These have to be safelisted in tailwind.config.cjs to be rendered dynamically
+/* https://www.vincentschmalbach.com/tailwind-css-and-dynamic-or-conditional-class-names-in-vue/
+*/
+.bg-yellow-sl { @apply bg-yellow-500; }
+.bg-red-sl { @apply bg-red-500; }
+.bg-green-sl { @apply bg-green-500; }
+.bg-purple-sl { @apply bg-purple-500; }
+.bg-light-gray-sl { @apply bg-gray-300; }
+.bg-dark-gray-sl { @apply bg-gray-600; }
+.bg-blue-sl { @apply bg-blue-500; }
+.bg-light-blue-sl { @apply bg-blue-300; }
+.bg-dark-blue-sl { @apply bg-blue-900; }
