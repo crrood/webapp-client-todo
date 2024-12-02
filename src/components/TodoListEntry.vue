@@ -4,7 +4,14 @@
       <input v-model="todo.name" readonly
         @click="inputClicked" @focusout="inputUnfocused"/>
     </div>
-    <div class="text-center">{{ todo.status }}</div>
+    <div class="text-center">
+      <select v-model="todo.status">
+        <option v-for="option in columns.value[1].options" 
+          :key="option.value" :value="option.value">
+          {{ option.value }}
+        </option>
+      </select>
+    </div>
     <div class="text-center">{{ todo.urgency }}</div>
     <div class="text-center">{{ todo.impact }}</div>
     <div class="text-center">{{ todo.effort }}</div>
@@ -18,17 +25,29 @@
         name: 'Todo',
         params: { id: todo._id.$oid, todo: JSON.stringify(todo) }})">
           Edit
-      </button>
+        </button>
+      </div>
     </div>
-  </div>
-</template>
+  </template>
 
 <script setup>
 import { defineProps, inject } from 'vue';
 import router from "../router";
 
-const props = defineProps(["todo"]);
+const axios = inject('axios');
+const props = defineProps(["todo", "columns"]);
 
+/*
+Render item
+*/
+console.log(props.columns);
+console.log(props.columns.value);
+console.log(props.columns.value[1].options)
+console.log(props.columns.value[1].options[0].value)
+
+/*
+Input editing
+*/
 function inputClicked(event) {
   // TODO: make the clickable area for each element bigger
   event.target.readOnly = false;
@@ -37,12 +56,11 @@ function inputClicked(event) {
 };
 
 function inputUnfocused(event) {
-  // TODO: save on active field losing focus
   event.target.readOnly = true;
-  saveData();
+  saveTodoData();
 }
 
-function saveData() {
+function saveTodoData() {
   const path = "/todo";
   axios.put(path, props.todo)
     .then(res => {
@@ -53,5 +71,4 @@ function saveData() {
     });
 }
 
-const axios = inject('axios');
 </script>

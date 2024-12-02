@@ -16,5 +16,126 @@
       "effort": "Low",
       "notes": "https://www.github.com/crrood"
     }
+  ],
+  "columns": [
+    {
+      "title": "name",
+      "type": "text",
+      "required": true,
+      "order": 1
+    },
+    {
+      "title": "status",
+      "type": "select",
+      "required": false,
+      "order": 2,
+      "options": [
+        {
+          "value": "Working on it",
+          "color": "yellow",
+          "priority": 1
+        },
+        {
+          "value": "Todo",
+          "color": "red",
+          "priority": 2
+        },
+        {
+          "value": "Pending",
+          "color": "purple",
+          "priority": 3
+        },
+        {
+          "value": "Waiting",
+          "color": "dark-gray",
+          "priority": 4
+        },
+        {
+          "value": "Closed",
+          "color": "light-gray",
+          "priority": 5
+        },
+        {
+          "value": "Done",
+          "color": "green",
+          "priority": 6
+        }
+      ]
+    },
+    {
+      "title": "urgency",
+      "type": "select",
+      "required": true,
+      "order": 3,
+      "options": [
+        {
+          "value": "High",
+          "color": "dark-blue",
+          "priority": 1
+        },
+        {
+          "value": "Medium",
+          "color": "blue",
+          "priority": 2
+        },
+        {
+          "value": "Low",
+          "color": "light-blue",
+          "priority": 3
+        }
+      ]
+    },
+    {
+      "title": "impact",
+      "type": "select",
+      "required": true,
+      "order": 4,
+      "options": [
+        {
+          "value": "High",
+          "color": "dark-blue",
+          "priority": 1
+        },
+        {
+          "value": "Medium",
+          "color": "blue",
+          "priority": 2
+        },
+        {
+          "value": "Low",
+          "color": "light-blue",
+          "priority": 3
+        }
+      ]
+    },
+    {
+      "title": "effort",
+      "type": "select",
+      "required": true,
+      "order": 5,
+      "options": [
+        {
+          "value": "Low",
+          "color": "dark-blue",
+          "priority": 1
+        },
+        {
+          "value": "Medium",
+          "color": "blue",
+          "priority": 2
+        },
+        {
+          "value": "High",
+          "color": "light-blue",
+          "priority": 3
+        }
+      ]
+    },
+    {
+      "title": "notes",
+      "type": "text",
+      "required": false,
+      "order": 6
+    }
   ]
 }

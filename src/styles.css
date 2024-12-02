@@ -28,3 +28,11 @@ input:read-only {
 input:focus {
   outline: none;
 }
+
+select {
+  @apply bg-transparent border-b-2 border-white text-white;
+}
+
+option {
+  @apply bg-primary border-none text-white;
+}

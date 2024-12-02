@@ -1,7 +1,7 @@
 <template>
   <div class="bg-primary">
-    <TodoListEntry v-for="todo in state.entities" :key="todo._id.$oid"
-      :todo="todo" />
+    <TodoListEntry v-if="!state.isFetchingColumns" v-for="todo in state.entities" :key="todo._id.$oid"
+      :todo="todo" :columns="state.columns"/>
   </div>
   <!-- Previous / next page buttons -->
   <!-- Icons from https://www.flaticon.com/uicons/get-started -->
@@ -26,8 +26,11 @@
 import { inject, reactive, watch } from 'vue';
 import TodoListEntry from './TodoListEntry.vue';
 
+const axios = inject('axios');
 const state = reactive({
+  isFetchingColumns: true,
   entities: [],
+  columns: [],
   pageNumber: 0
 })
 
@@ -38,7 +41,6 @@ watch(() => state.pageNumber, () => {
   getTodoList(state.pageNumber);
 });
 
-const axios = inject('axios');
 function getTodoList(pageNumber) {
   const path = '/todo?page=' + pageNumber
   axios.get(path)
@@ -51,5 +53,15 @@ function getTodoList(pageNumber) {
 }
 
 getTodoList(state.pageNumber);
+
+const columnsPath = "/columns";
+axios.get(columnsPath)
+  .then(res => {
+    state.columns.value = res.data;
+    state.isFetchingColumns = false;
+  })
+  .catch(error => {
+    console.error(error);
+  });
 
 </script>
