@@ -12,7 +12,10 @@
         </option>
       </select>
     </div>
-    <div class="text-center">{{ todo.urgency }}</div>
+    <div class="text-center">
+      <SelectColor :field="columns[2].title" :options="columns[2].options" :startingValue="todo.urgency"
+        @update:selected="updateTodoValue"/>
+    </div>
     <div class="text-center">{{ todo.impact }}</div>
     <div class="text-center">{{ todo.effort }}</div>
     <div class="col-span-2" readonly>
@@ -33,6 +36,7 @@
 <script setup>
 import { defineProps, inject } from 'vue';
 import router from "../router";
+import SelectColor from './SelectColor.vue';
 
 const axios = inject('axios');
 const props = defineProps(["todo", "columns"]);
@@ -49,6 +53,11 @@ Render item
 /*
 Input editing
 */
+function updateTodoValue(field, value) {
+  props.todo[field] = value;
+  saveTodoData();
+}
+
 function inputClicked(event) {
   // TODO: make the clickable area for each element bigger
   event.target.readOnly = false;
