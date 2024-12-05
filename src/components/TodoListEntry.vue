@@ -1,8 +1,7 @@
 <template>
   <div class="grid grid-cols-9 space-x-4 m-4 p-4 text-white border-2 border-white">
     <div class="col-span-2">
-      <input v-model="todo.name" readonly
-        @click="inputClicked" @focusout="inputUnfocused"/>
+      <TInput :startingValue="todo.name" :field="columns[0].title" @update:data="updateTodoValue"/>
     </div>
     <div class="text-center">
       <select v-model="todo.status">
@@ -13,8 +12,8 @@
       </select>
     </div>
     <div class="text-center">
-      <SelectColor :field="columns[2].title" :options="columns[2].options" :startingValue="todo.urgency"
-        @update:selected="updateTodoValue"/>
+      <TSelect :field="columns[2].title" :options="columns[2].options" :startingValue="todo.urgency"
+        @update:data="updateTodoValue"/>
     </div>
     <div class="text-center">{{ todo.impact }}</div>
     <div class="text-center">{{ todo.effort }}</div>
@@ -36,7 +35,8 @@
 <script setup>
 import { defineProps, inject } from 'vue';
 import router from "../router";
-import SelectColor from './SelectColor.vue';
+import TInput from "./TInput.vue";
+import TSelect from "./TSelect.vue";
 
 const axios = inject('axios');
 const props = defineProps(["todo", "columns"]);
@@ -55,18 +55,6 @@ Input editing
 */
 function updateTodoValue(field, value) {
   props.todo[field] = value;
-  saveTodoData();
-}
-
-function inputClicked(event) {
-  // TODO: make the clickable area for each element bigger
-  event.target.readOnly = false;
-  event.target.focus();
-  event.target.select();
-};
-
-function inputUnfocused(event) {
-  event.target.readOnly = true;
   saveTodoData();
 }
 
