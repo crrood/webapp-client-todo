@@ -1,7 +1,10 @@
 <template>
   <div class="grid grid-cols-9 space-x-4 m-4 p-4 text-white border-2 border-white">
     <div class="col-span-2">
-      <TInput :startingValue="todo.name" :field="columns[0].title" @update:data="updateTodoValue"/>
+      <TInput 
+        :startingValue="todo.name" 
+        :columnData="columns[0]" 
+        @update:data="updateTodoValue"/>
     </div>
     <div class="text-center">
       <select v-model="todo.status">
@@ -12,7 +15,9 @@
       </select>
     </div>
     <div class="text-center">
-      <TSelect :field="columns[2].title" :options="columns[2].options" :startingValue="todo.urgency"
+      <TSelect 
+        :startingValue="todo.urgency" 
+        :columnData="columns[2]"
         @update:data="updateTodoValue"/>
     </div>
     <div class="text-center">{{ todo.impact }}</div>

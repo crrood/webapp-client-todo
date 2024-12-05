@@ -6,7 +6,7 @@
 <script setup>
 import { defineEmits, defineProps, ref } from 'vue';
 
-const props = defineProps(['field', 'startingValue']);
+const props = defineProps(['columnData', 'startingValue']);
 const data = ref(props.startingValue);
 const emit = defineEmits(['update:data']);
 
@@ -19,6 +19,6 @@ function inputClicked(event) {
 
 function inputUnfocused(event) {
   event.target.readOnly = true;
-  emit('update:data', props.field, data.value);
+  emit('update:data', props.columnData.title, data.value);
 }
 </script>

@@ -41,15 +41,17 @@ import {
 } from 'radix-vue';
 import { computed, ref, watch } from 'vue';
 
-const props = defineProps(['field', 'startingValue', 'options']);
-const selected = ref(props.startingValue);
+const props = defineProps(['startingValue', 'columnData']);
 const emit = defineEmits(['update:data']);
 
+const selected = ref(props.startingValue);
+const options = props.columnData.options;
+
 watch(() => selected.value, () => {
-  emit('update:data', props.field, selected.value);
+  emit('update:data', props.columnData.title, selected.value);
 });
 
 const selectedColor = computed(() => {
-  return props.options.find(option => option.name === selected.value).color;
+  return props.columnData.options.find(option => option.name === selected.value).color;
 })
 </script>
