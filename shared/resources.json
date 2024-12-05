@@ -31,32 +31,32 @@
       "order": 2,
       "options": [
         {
-          "value": "Working on it",
+          "name": "Working on it",
           "color": "yellow",
           "priority": 1
         },
         {
-          "value": "Todo",
+          "name": "Todo",
           "color": "red",
           "priority": 2
         },
         {
-          "value": "Pending",
+          "name": "Pending",
           "color": "purple",
           "priority": 3
         },
         {
-          "value": "Waiting",
+          "name": "Waiting",
           "color": "dark-gray",
           "priority": 4
         },
         {
-          "value": "Closed",
+          "name": "Closed",
           "color": "light-gray",
           "priority": 5
         },
         {
-          "value": "Done",
+          "name": "Done",
           "color": "green",
           "priority": 6
         }
@@ -69,17 +69,17 @@
       "order": 3,
       "options": [
         {
-          "value": "High",
+          "name": "High",
           "color": "dark-blue",
           "priority": 1
         },
         {
-          "value": "Medium",
+          "name": "Medium",
           "color": "blue",
           "priority": 2
         },
         {
-          "value": "Low",
+          "name": "Low",
           "color": "light-blue",
           "priority": 3
         }
@@ -92,17 +92,17 @@
       "order": 4,
       "options": [
         {
-          "value": "High",
+          "name": "High",
           "color": "dark-blue",
           "priority": 1
         },
         {
-          "value": "Medium",
+          "name": "Medium",
           "color": "blue",
           "priority": 2
         },
         {
-          "value": "Low",
+          "name": "Low",
           "color": "light-blue",
           "priority": 3
         }
@@ -115,17 +115,17 @@
       "order": 5,
       "options": [
         {
-          "value": "Low",
+          "name": "Low",
           "color": "dark-blue",
           "priority": 1
         },
         {
-          "value": "Medium",
+          "name": "Medium",
           "color": "blue",
           "priority": 2
         },
         {
-          "value": "High",
+          "name": "High",
           "color": "light-blue",
           "priority": 3
         }

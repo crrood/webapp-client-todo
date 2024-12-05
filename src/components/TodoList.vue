@@ -57,7 +57,7 @@ getTodoList(state.pageNumber);
 const columnsPath = "/columns";
 axios.get(columnsPath)
   .then(res => {
-    state.columns.value = res.data;
+    state.columns = res.data;
     state.isFetchingColumns = false;
   })
   .catch(error => {

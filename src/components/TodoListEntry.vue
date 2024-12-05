@@ -6,9 +6,9 @@
     </div>
     <div class="text-center">
       <select v-model="todo.status">
-        <option v-for="option in columns.value[1].options"
-          :class="'bg-' + option.color + '-sl'" :key="option.value" :value="option.value">
-          {{ option.value }}
+        <option v-for="option in columns[1].options"
+          :class="'bg-' + option.color + '-sl'" :key="option.name" :value="option.name">
+          {{ option.name }}
         </option>
       </select>
     </div>
