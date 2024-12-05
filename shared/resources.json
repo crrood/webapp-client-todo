@@ -19,14 +19,14 @@
   ],
   "columns": [
     {
-      "title": "name",
-      "type": "text",
+      "field": "name",
+      "component": "TInput",
       "required": true,
       "order": 1
     },
     {
-      "title": "status",
-      "type": "select",
+      "field": "status",
+      "component": "TSelect",
       "required": false,
       "order": 2,
       "options": [
@@ -63,8 +63,8 @@
       ]
     },
     {
-      "title": "urgency",
-      "type": "select",
+      "field": "urgency",
+      "component": "TSelect",
       "required": true,
       "order": 3,
       "options": [
@@ -86,8 +86,8 @@
       ]
     },
     {
-      "title": "impact",
-      "type": "select",
+      "field": "impact",
+      "component": "TSelect",
       "required": true,
       "order": 4,
       "options": [
@@ -109,8 +109,8 @@
       ]
     },
     {
-      "title": "effort",
-      "type": "select",
+      "field": "effort",
+      "component": "TSelect",
       "required": true,
       "order": 5,
       "options": [
@@ -132,8 +132,8 @@
       ]
     },
     {
-      "title": "notes",
-      "type": "text",
+      "field": "notes",
+      "component": "TInput",
       "required": false,
       "order": 6
     }

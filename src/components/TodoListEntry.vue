@@ -1,31 +1,13 @@
 <template>
   <div class="grid grid-cols-9 space-x-4 m-4 p-4 text-white border-2 border-white">
-    <div class="col-span-2">
-      <TInput 
-        :startingValue="todo.name" 
-        :columnData="columns[0]" 
-        @update:data="updateTodoValue"/>
-    </div>
-    <div class="text-center">
-      <select v-model="todo.status">
-        <option v-for="option in columns[1].options"
-          :class="'bg-' + option.color + '-sl'" :key="option.name" :value="option.name">
-          {{ option.name }}
-        </option>
-      </select>
-    </div>
-    <div class="text-center">
-      <TSelect 
-        :startingValue="todo.urgency" 
-        :columnData="columns[2]"
-        @update:data="updateTodoValue"/>
-    </div>
-    <div class="text-center">{{ todo.impact }}</div>
-    <div class="text-center">{{ todo.effort }}</div>
-    <div class="col-span-2" readonly>
-      <input v-model="todo.notes" readonly
-        @click="inputClicked" @focusout="inputUnfocused"/>
-    </div>
+    <component 
+      v-for="(column, index) in columns"
+      :is="column.component"
+      :key="index"
+      :startingValue="todo[column.field]"
+      :columnData="column"
+      @update:data="updateTodoValue"
+    />
     <div>
       <button class="btn-primary"
         @click="router.push({ 
@@ -40,8 +22,6 @@
 <script setup>
 import { defineProps, inject } from 'vue';
 import router from "../router";
-import TInput from "./TInput.vue";
-import TSelect from "./TSelect.vue";
 
 const axios = inject('axios');
 const props = defineProps(["todo", "columns"]);

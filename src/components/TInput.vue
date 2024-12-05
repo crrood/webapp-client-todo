@@ -1,6 +1,8 @@
 <template>
-  <input v-model="data" readonly
-    @click="inputClicked" @focusout="inputUnfocused"/>
+  <div class="col-span-2">
+    <input v-model="data" readonly
+      @click="inputClicked" @focusout="inputUnfocused"/>
+  </div>
 </template>
 
 <script setup>
@@ -19,6 +21,6 @@ function inputClicked(event) {
 
 function inputUnfocused(event) {
   event.target.readOnly = true;
-  emit('update:data', props.columnData.title, data.value);
+  emit('update:data', props.columnData.field, data.value);
 }
 </script>

@@ -1,31 +1,33 @@
 <template>
-  <SelectRoot v-model="selected">
-    <SelectTrigger
-      class="bg-primary text-white p-2 m-2 rounded-sm"
-      :class="'bg-' + selectedColor + '-sl'"
-    >
-      <SelectValue :placeholder="startingValue" />
-    </SelectTrigger>
+  <div>
+    <SelectRoot v-model="selected">
+      <SelectTrigger
+        class="bg-primary text-white p-2 m-2 rounded-sm"
+        :class="'bg-' + selectedColor + '-sl'"
+      >
+        <SelectValue :placeholder="startingValue" />
+      </SelectTrigger>
 
-    <SelectPortal>
-      <SelectContent>
-        <SelectViewport class="p-[5px]">
-            <SelectItem
-              class="p-2" :class="'bg-' + option.color + '-sl'"
-              v-for="option in options"
-              :key="option.name"
-              :value="option.name"
-            >
-              <SelectItemText
-                class="text-white select-none"
+      <SelectPortal>
+        <SelectContent>
+          <SelectViewport class="p-[5px]">
+              <SelectItem
+                class="p-2" :class="'bg-' + option.color + '-sl'"
+                v-for="option in props.columnData.options"
+                :key="option.name"
+                :value="option.name"
               >
-                {{ option.name }}
-              </SelectItemText>
-            </SelectItem>
-        </SelectViewport>
-      </SelectContent>
-    </SelectPortal>
-  </SelectRoot>
+                <SelectItemText
+                  class="text-white select-none"
+                >
+                  {{ option.name }}
+                </SelectItemText>
+              </SelectItem>
+          </SelectViewport>
+        </SelectContent>
+      </SelectPortal>
+    </SelectRoot>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -45,10 +47,9 @@ const props = defineProps(['startingValue', 'columnData']);
 const emit = defineEmits(['update:data']);
 
 const selected = ref(props.startingValue);
-const options = props.columnData.options;
 
 watch(() => selected.value, () => {
-  emit('update:data', props.columnData.title, selected.value);
+  emit('update:data', props.columnData.field, selected.value);
 });
 
 const selectedColor = computed(() => {
