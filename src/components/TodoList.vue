@@ -1,7 +1,12 @@
 <template>
   <div class="bg-primary">
-    <TodoListEntry v-if="!state.isFetchingColumns" v-for="todo in state.entities" :key="todo._id.$oid"
-      :todo="todo" :columns="state.columns"/>
+    <TodoListEntry 
+      v-if="!state.isFetchingColumns" 
+      v-for="todo in state.todos" 
+      :key="todo._id?.$oid"
+      :todo="todo" 
+      :columns="state.columns"
+    />
   </div>
   <!-- Previous / next page buttons -->
   <!-- Icons from https://www.flaticon.com/uicons/get-started -->
@@ -22,14 +27,22 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import type { AxiosInstance } from 'axios';
 import { inject, reactive, watch } from 'vue';
+import type { Column, Todo } from './Interfaces';
 import TodoListEntry from './TodoListEntry.vue';
 
-const axios = inject('axios');
-const state = reactive({
+const axios = inject('axios') as AxiosInstance;
+interface State {
+  isFetchingColumns: boolean
+  todos: Todo[]
+  columns: Column[]
+  pageNumber: number
+}
+const state: State = reactive({
   isFetchingColumns: true,
-  entities: [],
+  todos: [],
   columns: [],
   pageNumber: 0
 })
@@ -41,11 +54,11 @@ watch(() => state.pageNumber, () => {
   getTodoList(state.pageNumber);
 });
 
-function getTodoList(pageNumber) {
+function getTodoList(pageNumber: number) {
   const path = '/todo?page=' + pageNumber
   axios.get(path)
     .then(res => {
-      state.entities = res.data;
+      state.todos = res.data;
     })
     .catch(error => {
       console.error(error);

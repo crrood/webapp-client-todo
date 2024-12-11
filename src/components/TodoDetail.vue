@@ -4,29 +4,38 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { type AxiosInstance } from 'axios';
 import { inject, reactive } from 'vue';
 import { useRoute } from 'vue-router';
+import type { Todo } from './Interfaces';
 
 const route = useRoute();
 
 // reactive state
-const state = reactive({
+interface State {
+  editing: boolean,
+  data?: Todo,
+}
+const state: State = reactive({
   editing: false,
-  data: {},
+  data: undefined,
 });
 
 // initialize
-const axios = inject('axios');
-if (route.params.todo) {
+const axios = inject('axios') as AxiosInstance;
+if (route.params.todo && typeof(route.params.todo) === 'string') {
   state.data = JSON.parse(route.params.todo);
 }
-else {
+else if (route.params.id && typeof(route.params.id) === 'string') {
   getTodo(route.params.id);
+}
+else {
+  console.error('No id or todo data provided');
 }
 
 // methods
-function getTodo(id) {
+function getTodo(id: string) {
   const path = '/todo/' + id;
   axios.get(path)
     .then(res => {
@@ -57,7 +66,7 @@ function toggleInputs() {
 }
 
 function saveData() {
-  const path = '/todo/' + state.data._id.$oid;
+  const path = '/todo/' + state.data?._id?.$oid;
   axios.put(path, state.data)
     .then(res => {
       console.log(res.data);

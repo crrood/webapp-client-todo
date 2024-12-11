@@ -4,7 +4,8 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { type AxiosInstance } from 'axios';
 import { inject, onMounted, reactive } from 'vue';
 
 // reactive state
@@ -13,7 +14,7 @@ const state = reactive({
 });
 
 // methods
-const axios = inject('axios');
+const axios = inject('axios') as AxiosInstance;
 onMounted(() => {
   const path = '/';
   axios.get(path)

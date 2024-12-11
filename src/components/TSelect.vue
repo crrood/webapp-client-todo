@@ -42,8 +42,12 @@ import {
   SelectViewport
 } from 'radix-vue';
 import { computed, ref, watch } from 'vue';
+import type { Column, SelectOptions } from './Interfaces';
 
-const props = defineProps(['startingValue', 'columnData']);
+const props = defineProps<{
+  startingValue: string,
+  columnData: Column
+}>();
 const emit = defineEmits(['update:data']);
 
 const selected = ref(props.startingValue);
@@ -53,6 +57,8 @@ watch(() => selected.value, () => {
 });
 
 const selectedColor = computed(() => {
-  return props.columnData.options.find(option => option.name === selected.value).color;
+  return props.columnData?.options?.find(
+    (option: SelectOptions) =>
+      option.name === selected.value)?.color;
 })
 </script>

@@ -6,6 +6,7 @@
       :key="index"
       :startingValue="todo[column.field]"
       :columnData="column"
+      :uniqueId="column.field + todo._id.$oid"
       @update:data="updateTodoValue"
     />
     <div>
@@ -19,11 +20,12 @@
     </div>
   </template>
 
-<script setup>
+<script setup lang="ts">
+import type { AxiosInstance } from 'axios';
 import { defineProps, inject } from 'vue';
 import router from "../router";
 
-const axios = inject('axios');
+const axios = inject('axios') as AxiosInstance;
 const props = defineProps(["todo", "columns"]);
 
 /*
@@ -38,7 +40,7 @@ Render item
 /*
 Input editing
 */
-function updateTodoValue(field, value) {
+function updateTodoValue(field: string, value: string) {
   props.todo[field] = value;
   saveTodoData();
 }

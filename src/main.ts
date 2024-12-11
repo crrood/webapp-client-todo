@@ -1,8 +1,8 @@
-import axios from 'axios'
+import axios, { type AxiosInstance } from 'axios'
 import { createApp } from 'vue'
 
 import App from './App.vue'
-import router from './router.js'
+import router from './router.ts'
 import './styles.css'
 
 import TIinput from './components/TInput.vue'
@@ -14,10 +14,10 @@ const app = createApp(App)
 app.use(router)
 
 // global variables
-const axiosInstance = axios.create({
+const axiosInstance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_SERVER_HOST + ":" + import.meta.env.VITE_SERVER_PORT + '/api/',
-})
-app.provide('axios', axiosInstance)
+});
+app.provide('axios', axiosInstance);
 
 // dynamic components
 // required because the Vue VSCode extension forcibly removes any "unused" imports
