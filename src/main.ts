@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './router.ts'
 import './styles.css'
 
+import TCheckbox from './components/TCheckbox.vue'
 import TIinput from './components/TInput.vue'
 import TSelect from './components/TSelect.vue'
 
@@ -24,6 +25,7 @@ app.provide('axios', axiosInstance);
 app
   .component('TInput', TIinput)
   .component('TSelect', TSelect)
+  .component('TCheckbox', TCheckbox)
 
 // mount app to index.html
 app.mount('#app')
