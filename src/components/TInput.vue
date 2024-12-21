@@ -3,31 +3,40 @@
     <input 
       v-model="data"
       :id="uniqueId"
-      @click="inputClicked" 
+      @focusin="inputFocused" 
       @focusout="inputUnfocused"
+      @keydown="keyPressed"
       readonly
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineEmits, defineProps, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const props = defineProps(['columnData', 'startingValue', 'uniqueId']);
 const data = ref(props.startingValue);
 const emit = defineEmits(['update:data']);
+var inputEl: HTMLInputElement;
 
-function inputClicked(event: MouseEvent) {
-  // TODO: make the clickable area for each element bigger
-  const input = event.target as HTMLInputElement;
-  input.readOnly = false;
-  input.focus();
-  input.select();
+onMounted(() => {
+  inputEl = document.querySelector(`#${props.uniqueId}`)!;
+});
+
+function inputFocused(event: FocusEvent) {
+  inputEl.readOnly = false;
+  inputEl.focus();
+  inputEl.select();
 };
 
 function inputUnfocused() {
-  const inputEl: HTMLInputElement = document.querySelector(`#${props.uniqueId}`)!;
   inputEl.readOnly = true;
   emit('update:data', props.columnData.field, data.value);
+}
+
+function keyPressed(event: KeyboardEvent) {
+  if (event.key === 'Enter') {
+    inputEl.blur();
+  }
 }
 </script>
