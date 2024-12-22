@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { CheckboxIndicator, CheckboxRoot } from 'radix-vue';
 import { ref } from 'vue';
-import type { Column } from './Interfaces';
+import type { Column } from '../Interfaces';
 
 const props = defineProps<{
   startingValue: string,

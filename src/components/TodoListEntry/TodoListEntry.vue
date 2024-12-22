@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import type { AxiosInstance } from 'axios';
 import { defineProps, inject } from 'vue';
-import router from "../router";
+import router from "../../router";
 
 const axios = inject('axios') as AxiosInstance;
 const props = defineProps(["todo", "columns"]);

@@ -5,9 +5,9 @@ import App from './App.vue'
 import router from './router.ts'
 import './styles.css'
 
-import TCheckbox from './components/TCheckbox.vue'
-import TIinput from './components/TInput.vue'
-import TSelect from './components/TSelect.vue'
+import TCheckbox from './components/TodoListEntry/TCheckbox.vue'
+import TIinput from './components/TodoListEntry/TInput.vue'
+import TSelect from './components/TodoListEntry/TSelect.vue'
 
 const app = createApp(App)
 

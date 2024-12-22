@@ -59,7 +59,7 @@ import type { AxiosInstance } from 'axios';
 import { CheckboxIndicator, CheckboxRoot } from 'radix-vue';
 import { inject, reactive, watch } from 'vue';
 import type { Column, Todo } from './Interfaces';
-import TodoListEntry from './TodoListEntry.vue';
+import TodoListEntry from './TodoListEntry/TodoListEntry.vue';
 
 const axios = inject('axios') as AxiosInstance;
 interface State {
