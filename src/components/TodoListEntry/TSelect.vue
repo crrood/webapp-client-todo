@@ -1,28 +1,31 @@
 <template>
-  <div>
+  <div class="flex justify-center">
     <SelectRoot v-model="selected">
       <SelectTrigger
-        class="bg-primary text-white p-2 m-2 rounded-sm"
+        class="bg-primary text-white p-2 m-2 grow rounded-sm"
         :class="'bg-' + selectedColor + '-sl'"
       >
-        <SelectValue :placeholder="startingValue" />
+        <SelectValue 
+          :placeholder="startingValue" 
+          class=""
+      />
       </SelectTrigger>
 
       <SelectPortal>
         <SelectContent>
           <SelectViewport class="p-[5px]">
-              <SelectItem
-                class="p-2" :class="'bg-' + option.color + '-sl'"
-                v-for="option in props.columnData.options"
-                :key="option.name"
-                :value="option.name"
+            <SelectItem
+              class="p-2" :class="'bg-' + option.color + '-sl'"
+              v-for="option in props.columnData.options"
+              :key="option.name"
+              :value="option.name"
+            >
+              <SelectItemText
+                class="text-white select-none"
               >
-                <SelectItemText
-                  class="text-white select-none"
-                >
-                  {{ option.name }}
-                </SelectItemText>
-              </SelectItem>
+                {{ option.name }}
+              </SelectItemText>
+            </SelectItem>
           </SelectViewport>
         </SelectContent>
       </SelectPortal>

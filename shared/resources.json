@@ -3,7 +3,7 @@
     {
       "name": "Make a todo app",
       "done": "false",
-      "status": "Working on it",
+      "status": "Active",
       "urgency": "High",
       "impact": "High",
       "effort": "High",
@@ -39,7 +39,7 @@
       "order": 3,
       "options": [
         {
-          "name": "Working on it",
+          "name": "Active",
           "color": "yellow",
           "priority": 1
         },

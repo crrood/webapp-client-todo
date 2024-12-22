@@ -2,13 +2,13 @@
   <!-- Filters and sorting -->
   <div class="flex flex-col px-4 py-2 text-white">
     <div class="flex gap-2">
-      <label>
+      <label class="my-auto">
         Show Done
       </label>
       <CheckboxRoot
         v-model:checked="state.showDone"
         @update:checked="getTodoList"
-        class="flex h-5 w-5 items-center justify-center rounded-md bg-white"
+        class="flex h-5 w-5 my-auto items-center justify-center rounded-md bg-white"
       >
         <CheckboxIndicator 
           class="bg-white h-full w-full rounded flex items-center justify-center">
