@@ -1,6 +1,6 @@
 <template>
   <nav 
-    class="grid grid-cols-8 gap-4 p-2 bg-primary text-white" 
+    class="grid grid-cols-8 gap-4 p-4 bg-primary-light text-white" 
     role="navigation"
   >
     <div class="">
@@ -9,13 +9,13 @@
       </router-link>
     </div>
 
-    <div class="col-span-6 my-auto text-2xl">
+    <div class="col-span-6 my-auto text-4xl">
       <router-link class="" to="/todo">
         Todo
       </router-link>
     </div>
 
-    <button class="btn-warning my-auto text-xl">
+    <button class="btn-warning my-auto text-l">
       <a href="/api/resetDB" class="">
         Reset DB
       </a>
