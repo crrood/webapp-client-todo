@@ -1,4 +1,31 @@
 <template>
+  <!-- Filters and sorting -->
+  <div class="flex flex-col px-4 py-2 text-white">
+    <div class="flex gap-2">
+      <label>
+        Show Done
+      </label>
+      <CheckboxRoot
+        v-model:checked="state.showDone"
+        @update:checked="getTodoList"
+        class="flex h-5 w-5 items-center justify-center rounded-md bg-white"
+      >
+        <CheckboxIndicator 
+          class="bg-white h-full w-full rounded flex items-center justify-center">
+          <!-- <Icon
+            icon="radix-icons:check"
+            class="h-3.5 w-3.5 text-grass11"
+          /> -->
+          <svg v-if="state.showDone" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 507.506 507.506" style="enable-background:new 0 0 507.506 507.506;" xml:space="preserve" width="512" height="512">
+            <g>
+              <path d="M163.865,436.934c-14.406,0.006-28.222-5.72-38.4-15.915L9.369,304.966c-12.492-12.496-12.492-32.752,0-45.248l0,0   c12.496-12.492,32.752-12.492,45.248,0l109.248,109.248L452.889,79.942c12.496-12.492,32.752-12.492,45.248,0l0,0   c12.492,12.496,12.492,32.752,0,45.248L202.265,421.019C192.087,431.214,178.271,436.94,163.865,436.934z"/>
+            </g>
+          </svg>
+        </CheckboxIndicator>
+      </CheckboxRoot>
+    </div>
+  </div>
+  <!-- Actual list of Todo items -->
   <div class="bg-primary">
     <TodoListEntry 
       v-if="!state.isFetchingColumns" 
@@ -29,6 +56,7 @@
 
 <script setup lang="ts">
 import type { AxiosInstance } from 'axios';
+import { CheckboxIndicator, CheckboxRoot } from 'radix-vue';
 import { inject, reactive, watch } from 'vue';
 import type { Column, Todo } from './Interfaces';
 import TodoListEntry from './TodoListEntry.vue';
@@ -39,24 +67,32 @@ interface State {
   todos: Todo[]
   columns: Column[]
   pageNumber: number
+  showDone: boolean
 }
 const state: State = reactive({
   isFetchingColumns: true,
   todos: [],
   columns: [],
-  pageNumber: 0
+  pageNumber: 0,
+  showDone: false
 })
 
 watch(() => state.pageNumber, () => {
   if (state.pageNumber < 0) {
     state.pageNumber = 0;
   }
-  getTodoList(state.pageNumber);
+  getTodoList();
 });
 
-function getTodoList(pageNumber: number) {
-  const path = '/todo?page=' + pageNumber
-  axios.get(path)
+function getTodoList() {
+  const path = "/todo";
+  const config = {
+    params: {
+      page: state.pageNumber,
+      done: state.showDone.toString()
+    }
+  }
+  axios.get(path, config)
     .then(res => {
       state.todos = res.data;
     })
@@ -65,7 +101,7 @@ function getTodoList(pageNumber: number) {
     })
 }
 
-getTodoList(state.pageNumber);
+getTodoList();
 
 const columnsPath = "/columns";
 axios.get(columnsPath)

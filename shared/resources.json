@@ -2,7 +2,7 @@
   "todo": [
     {
       "name": "Make a todo app",
-      "done": false,
+      "done": "false",
       "status": "Working on it",
       "urgency": "High",
       "impact": "High",
@@ -11,7 +11,7 @@
     },
     {
       "name": "Publish to github",
-      "done": false,
+      "done": "false",
       "status": "Todo",
       "urgency": "Medium",
       "impact": "Medium",
