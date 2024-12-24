@@ -1,8 +1,8 @@
 <template>
-  <div class="grid grid-cols-10 space-x-4 mx-4 my-2 px-4 bg-primary-light text-white">
+  <div class="grid grid-cols-10 space-x-4 mx-4 my-2 px-4 items-center bg-primary-light text-white">
     <component 
       v-for="(column, index) in columns"
-      class="flex justify-center my-auto grow"
+      class="flex justify-center grow"
       :is="column.component"
       :key="index"
       :startingValue="todo[column.field]"
@@ -10,7 +10,7 @@
       :uniqueId="column.field + todo._id.$oid"
       @update:data="updateTodoValue"
     />
-    <div class="my-auto">
+    <div>
       <button 
         class="btn-primary"
         @click="router.push({ 

@@ -3,6 +3,7 @@ export interface Todo {
     $oid: string
   }
   name: string
+  done: string
   status: string
   urgency: string
   impact: string

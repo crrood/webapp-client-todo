@@ -9,11 +9,11 @@ a {
 
 /* BUTTONS */
 .btn-primary {
-  @apply bg-secondary hover:bg-secondary-dark p-2 rounded text-white font-bold;
+  @apply p-2 px-3 rounded-3xl bg-secondary hover:bg-secondary-dark text-white font-bold;
 }
 
 .btn-warning {
-  @apply bg-orange-500 hover:bg-orange-600 rounded text-white font-bold;
+  @apply p-2 px-3 rounded-3xl bg-orange-500 hover:bg-orange-600 text-white font-bold;
 }
 
 /* INPUT */

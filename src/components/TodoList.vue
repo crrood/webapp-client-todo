@@ -1,20 +1,32 @@
 <template>
-  <!-- Filters and sorting -->
-  <div class="flex flex-col px-4 py-2 text-white">
-    <div class="flex gap-2">
-      <label class="my-auto">
+  <div class="flex gap-4 justify-center pt-2">
+    <!-- Create new -->
+    <button 
+      class="btn-primary flex gap-2 !p-2 py-2 items-center text-white"
+      @click="createNewTodo"
+    >
+      <Icon
+        icon="iconamoon:sign-plus-bold"
+        class="w-6 text-white"
+        width="unset"
+      />
+    </button>
+    <!-- Filters and sorting -->
+    <div class="flex gap-2 px-4 py-2 items-center text-white">
+      <label class="">
         Show Done
       </label>
       <CheckboxRoot
         v-model:checked="state.showDone"
         @update:checked="getTodoList"
-        class="flex h-5 w-5 my-auto items-center justify-center rounded-md bg-white"
+        class="flex h-5 w-5 items-center justify-center rounded-md bg-white"
       >
         <CheckboxIndicator 
           class="bg-white h-full w-full rounded-md flex items-center justify-center">
           <Icon
             icon="iconamoon:check-bold"
-            class="text-black"
+            class="w-6 text-black"
+            width="unset"
           />
         </CheckboxIndicator>
       </CheckboxRoot>
@@ -84,5 +96,32 @@ axios.get(columnsPath)
   .catch(error => {
     console.error(error);
   });
+
+function createNewTodo() {
+  const newTodoData: Todo = {
+    name: "New Todo",
+    done: "false",
+    status: "Todo",
+    urgency: "Medium",
+    impact: "Medium",
+    effort: "Medium",
+    notes: "",
+  }
+
+  const path = "/todo";
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  }
+  axios.put(path, newTodoData, config)
+    .then(res => {
+      console.log(res.data);
+      getTodoList();
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
 
 </script>
