@@ -8,7 +8,7 @@
 import { type AxiosInstance } from 'axios';
 import { inject, reactive } from 'vue';
 import { useRoute } from 'vue-router';
-import type { Todo } from './Interfaces';
+import type { Todo } from '../Interfaces';
 
 const route = useRoute();
 

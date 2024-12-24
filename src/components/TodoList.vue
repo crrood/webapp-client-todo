@@ -49,7 +49,7 @@ import { Icon } from "@iconify/vue";
 import type { AxiosInstance } from 'axios';
 import { CheckboxIndicator, CheckboxRoot } from 'radix-vue';
 import { inject, reactive } from 'vue';
-import type { Column, Todo } from './Interfaces';
+import type { Column, Todo } from '../Interfaces';
 import TodoListEntry from './TodoListEntry/TodoListEntry.vue';
 
 const axios = inject('axios') as AxiosInstance;

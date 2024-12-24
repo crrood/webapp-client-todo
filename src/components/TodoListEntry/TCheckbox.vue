@@ -20,7 +20,7 @@
 import { Icon } from "@iconify/vue";
 import { CheckboxIndicator, CheckboxRoot } from 'radix-vue';
 import { ref } from 'vue';
-import type { Column } from '../Interfaces';
+import type { Column } from '../../Interfaces';
 
 const props = defineProps<{
   startingValue: string,

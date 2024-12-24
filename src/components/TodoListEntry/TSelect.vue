@@ -35,17 +35,17 @@
 
 <script setup lang="ts">
 import {
-  SelectContent,
-  SelectItem,
-  SelectItemText,
-  SelectPortal,
-  SelectRoot,
-  SelectTrigger,
-  SelectValue,
-  SelectViewport
+    SelectContent,
+    SelectItem,
+    SelectItemText,
+    SelectPortal,
+    SelectRoot,
+    SelectTrigger,
+    SelectValue,
+    SelectViewport
 } from 'radix-vue';
 import { computed, ref, watch } from 'vue';
-import type { Column, SelectOptions } from '../Interfaces';
+import type { Column, SelectOptions } from '../../Interfaces';
 
 const props = defineProps<{
   startingValue: string,
