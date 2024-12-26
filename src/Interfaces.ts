@@ -24,3 +24,16 @@ export interface SelectOptions {
   color: string
   priority: number
 }
+
+export interface PutResponse {
+  success: boolean
+  message: string
+  id?: string
+  updatedExisting?: boolean
+}
+
+export interface DeleteResponse {
+  success: boolean
+  message: string
+  id?: string
+}

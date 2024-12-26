@@ -45,14 +45,13 @@
 </template>
 
 <script setup lang="ts">
+import * as API from "@/api";
 import { Icon } from "@iconify/vue";
-import type { AxiosInstance } from 'axios';
 import { CheckboxIndicator, CheckboxRoot } from 'radix-vue';
-import { inject, reactive } from 'vue';
+import { reactive } from 'vue';
 import type { Column, Todo } from '../Interfaces';
 import TodoListEntry from './TodoListEntry/TodoListEntry.vue';
 
-const axios = inject('axios') as AxiosInstance;
 interface State {
   isFetchingColumns: boolean
   todos: Todo[]
@@ -76,21 +75,21 @@ function getTodoList() {
       done: state.showDone.toString()
     }
   }
-  axios.get(path, config)
-    .then(res => {
-      state.todos = res.data;
+  API.getTodoList(state.showDone, state.pageNumber)
+    .then((res) => {
+      state.todos = res;
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(error);
-    })
+    });
 }
 
 getTodoList();
 
 const columnsPath = "/columns";
-axios.get(columnsPath)
+API.getColumns()
   .then(res => {
-    state.columns = res.data;
+    state.columns = res;
     state.isFetchingColumns = false;
   })
   .catch(error => {
@@ -114,9 +113,9 @@ function createNewTodo() {
       'Content-Type': 'application/json'
     },
   }
-  axios.put(path, newTodoData, config)
+  API.createTodo(newTodoData)
     .then(res => {
-      console.log(res.data);
+      console.log(res);
       getTodoList();
     })
     .catch(error => {

@@ -23,16 +23,10 @@
   </template>
 
 <script setup lang="ts">
-import type { AxiosInstance } from 'axios';
-import { defineProps, inject } from 'vue';
 import router from "../../router";
+import * as API from '@/api';
 
-const axios = inject('axios') as AxiosInstance;
 const props = defineProps(["todo", "columns"]);
-
-/*
-Render item
-*/
 
 /*
 Input editing
@@ -43,10 +37,9 @@ function updateTodoValue(field: string, value: string) {
 }
 
 function saveTodoData() {
-  const path = "/todo";
-  axios.put(path, props.todo)
+  API.updateTodo(props.todo)
     .then(res => {
-      console.log(res.data);
+      console.log(res);
     })
     .catch(error => {
       console.error(error);

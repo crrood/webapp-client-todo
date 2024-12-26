@@ -15,10 +15,17 @@
       </router-link>
     </div>
 
-    <button class="btn-warning text-l">
-      <a href="/api/resetDB" class="">
-        Reset DB
-      </a>
-    </button>
+    <div class="flex flex-col gap-2">
+      <button class="btn-primary">
+        <router-link to="/testAPI">
+          Test API
+        </router-link>
+      </button>
+      <button class="btn-warning text-l">
+        <a href="/api/resetDB" class="">
+          Reset DB
+        </a>
+      </button>
+    </div>
   </nav>
 </template>
