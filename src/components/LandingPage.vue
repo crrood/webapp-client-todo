@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { type AxiosInstance } from 'axios';
-import { inject, onMounted, reactive } from 'vue';
+import * as API from '@/api';
+import { onMounted, reactive } from 'vue';
 
 // reactive state
 const state = reactive({
@@ -14,10 +14,9 @@ const state = reactive({
 });
 
 // methods
-const axios = inject('axios') as AxiosInstance;
+const axiosInstance = API.axiosInstance;
 onMounted(() => {
-  const path = '/';
-  axios.get(path)
+  axiosInstance.get('/')
     .then(res => {
       state.response = res.data;
     })
@@ -25,7 +24,5 @@ onMounted(() => {
       console.error(error);
     })
 })
-
-// lifecycle hooks
 
 </script>
