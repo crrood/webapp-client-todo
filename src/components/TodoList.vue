@@ -2,7 +2,7 @@
   <div class="flex gap-4 justify-center pt-2">
     <!-- Create new -->
     <button 
-      class="btn-primary flex gap-2 !p-2 py-2 items-center !bg-green-700 text-white"
+      class="btn-primary flex gap-2 !p-2 py-2 items-center !bg-green-700"
       @click="createNewTodo"
     >
       <Icon

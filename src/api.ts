@@ -123,7 +123,18 @@ export async function updateTodo(todo: Todo): Promise<string> {
  * @param id id of the Todo object to delete
  * @returns success boolean
  */
-export async function deleteTodo(id: string): Promise<boolean> {
+export async function deleteTodo(data: string | Todo): Promise<boolean> {
+  let id: string;
+  if (typeof data === 'string') {
+    id = data;
+  }
+  else if (typeof data === 'object' && data.hasOwnProperty('_id') && data._id?.$oid) {
+    id = data._id?.$oid;
+  }
+  else {
+    return false;
+  }
+
   return new Promise((resolve, reject) => {
     axiosInstance.delete('/todo/' + id)
       .then(res => {

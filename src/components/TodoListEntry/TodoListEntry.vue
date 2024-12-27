@@ -10,21 +10,24 @@
       :uniqueId="column.field + todo._id.$oid"
       @update:data="updateTodoValue"
     />
-    <div>
+    <div class="flex justify-end">
       <button 
-        class="btn-primary"
-        @click="router.push({ 
-        name: 'Todo',
-        params: { id: todo._id.$oid, todo: JSON.stringify(todo) }})">
-          Edit
+        class="p-1 rounded-full items-center bg-red-600"
+        @click="deleteTodo"
+      >
+        <Icon
+          icon="iconamoon:sign-minus-bold"
+          class="w-4 text-white"
+          width="unset"
+        />
       </button>
-      </div>
     </div>
-  </template>
+  </div>
+</template>
 
 <script setup lang="ts">
-import router from "../../router";
 import * as API from '@/api';
+import { Icon } from "@iconify/vue";
 
 const props = defineProps(["todo", "columns"]);
 
@@ -35,6 +38,16 @@ function updateTodoValue(field: string, value: string) {
 
 function saveTodoData() {
   API.updateTodo(props.todo)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+function deleteTodo() {
+  API.deleteTodo(props.todo)
     .then(res => {
       console.log(res);
     })
