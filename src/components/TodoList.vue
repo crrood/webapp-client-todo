@@ -1,7 +1,7 @@
 <template>
   <div class="flex gap-4 justify-center pt-2">
     <!-- Create new -->
-    <button 
+    <button
       class="btn-primary flex gap-2 !p-2 py-2 items-center !bg-green-700"
       @click="createNewTodo"
     >
@@ -21,8 +21,7 @@
         @update:checked="getTodoList"
         class="flex h-5 w-5 items-center justify-center rounded-md bg-white"
       >
-        <CheckboxIndicator 
-          class="bg-white h-full w-full rounded-md flex items-center justify-center">
+        <CheckboxIndicator class="bg-white h-full w-full rounded-md flex items-center justify-center">
           <Icon
             icon="iconamoon:check-bold"
             class="w-6 text-black"
@@ -32,14 +31,15 @@
       </CheckboxRoot>
     </div>
   </div>
-  <!-- Actual list of Todo items -->
+  <!-- Todo items -->
   <div class="bg-primary">
-    <TodoListEntry 
-      v-if="!state.isFetchingColumns" 
-      v-for="todo in state.todos" 
+    <TodoListEntry
+      v-if="!state.isFetchingColumns"
+      v-for="todo in state.todos"
       :key="todo._id?.$oid"
-      :todo="todo" 
+      :todo="todo"
       :columns="state.columns"
+      @refresh="getTodoList"
     />
   </div>
 </template>
