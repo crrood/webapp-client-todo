@@ -2,11 +2,11 @@
   <div>
     <div class="p-4 font-bold text-2xl text-white">Test API</div>
     <hr>
-    <div 
+    <div
       id="results"
       class="p-4 bg-gray-100 text-black font-mono text-wrap"
     >
-    Page loading
+      Page loading
     </div>
   </div>
 </template>
@@ -19,12 +19,10 @@ import { onMounted } from 'vue';
 var resultsEl: HTMLElement;
 
 onMounted(async () => {
-  if (document.getElementById('results'))
-  {
+  if (document.getElementById('results')) {
     resultsEl = document.getElementById('results') as HTMLElement;
   }
-  else
-  {
+  else {
     console.log('results element not found');
   }
   append('Loaded');

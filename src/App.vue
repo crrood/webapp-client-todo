@@ -1,5 +1,8 @@
 <template>
-  <link rel="icon" href="data:;base64,=">
+  <link
+    rel="icon"
+    href="data:;base64,="
+  >
   <NavbarTop />
   <router-view />
 </template>

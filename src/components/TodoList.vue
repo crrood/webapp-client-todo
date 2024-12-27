@@ -2,12 +2,12 @@
   <div class="flex gap-4 justify-center pt-2">
     <!-- Create new -->
     <button
-      class="btn-primary flex gap-2 !p-2 py-2 items-center !bg-green-700"
+      class="rounded-full size-4 p-2 items-center bg-green-700"
       @click="createNewTodo"
     >
       <Icon
         icon="iconamoon:sign-plus-bold"
-        class="w-6 text-white"
+        class="w-5 text-white"
         width="unset"
       />
     </button>
@@ -101,7 +101,6 @@ function createNewTodo() {
 
   API.createTodo(newTodoData)
     .then(res => {
-      console.log(res);
       getTodoList();
     })
     .catch(error => {

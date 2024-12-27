@@ -40,7 +40,6 @@ function updateTodoValue(field: string, value: string) {
 function saveTodoData() {
   API.updateTodo(props.todo)
     .then(res => {
-      console.log(res);
       emit('refresh');
     })
     .catch(error => {
@@ -51,7 +50,6 @@ function saveTodoData() {
 function deleteTodo() {
   API.deleteTodo(props.todo)
     .then(res => {
-      console.log(res);
       emit('refresh');
     })
     .catch(error => {

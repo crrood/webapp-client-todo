@@ -5,24 +5,23 @@
         class="bg-primary text-white p-2 m-2 grow rounded-sm"
         :class="'bg-' + selectedColor + '-sl'"
       >
-        <SelectValue 
-          :placeholder="startingValue" 
+        <SelectValue
+          :placeholder="startingValue"
           class=""
-      />
+        />
       </SelectTrigger>
 
       <SelectPortal>
         <SelectContent>
           <SelectViewport class="p-[5px]">
             <SelectItem
-              class="p-2" :class="'bg-' + option.color + '-sl'"
+              class="p-2"
+              :class="'bg-' + option.color + '-sl'"
               v-for="option in props.columnData.options"
               :key="option.name"
               :value="option.name"
             >
-              <SelectItemText
-                class="text-white select-none"
-              >
+              <SelectItemText class="text-white select-none">
                 {{ option.name }}
               </SelectItemText>
             </SelectItem>
@@ -35,14 +34,14 @@
 
 <script setup lang="ts">
 import {
-    SelectContent,
-    SelectItem,
-    SelectItemText,
-    SelectPortal,
-    SelectRoot,
-    SelectTrigger,
-    SelectValue,
-    SelectViewport
+  SelectContent,
+  SelectItem,
+  SelectItemText,
+  SelectPortal,
+  SelectRoot,
+  SelectTrigger,
+  SelectValue,
+  SelectViewport
 } from 'radix-vue';
 import { computed, ref, watch } from 'vue';
 import type { Column, SelectOptions } from '../../Interfaces';

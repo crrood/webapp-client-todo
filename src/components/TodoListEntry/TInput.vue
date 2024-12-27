@@ -1,9 +1,9 @@
 <template>
   <div class="col-span-2">
-    <input 
+    <input
       v-model="data"
       :id="uniqueId"
-      @focusin="inputFocused" 
+      @focusin="inputFocused"
       @focusout="inputUnfocused"
       @keydown="keyPressed"
       readonly
