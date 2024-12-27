@@ -28,9 +28,6 @@ import * as API from '@/api';
 
 const props = defineProps(["todo", "columns"]);
 
-/*
-Input editing
-*/
 function updateTodoValue(field: string, value: string) {
   props.todo[field] = value;
   saveTodoData();

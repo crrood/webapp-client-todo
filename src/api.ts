@@ -18,19 +18,20 @@ export async function getTodoList(done: boolean = false, page: number = 0): Prom
       page: page,
     }
   };
-  try {
-    console.log(axiosInstance.defaults.baseURL);
-    const res = await axiosInstance.get('/todo', config);
-    console.log(res);
-    if (typeof res.data !== 'object') {
-      throw new Error('Invalid response from server');
-    }
-
-    return res.data;
-  }
-  catch (error) {
-    throw error;
-  }
+  return new Promise((resolve, reject) => {
+    axiosInstance.get('/todo', config)
+      .then(res => {
+        if (typeof res.data !== 'object') {
+          reject('Invalid response from server');
+        }
+        else {
+          resolve(res.data);
+        }
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
 }
 
 /**
@@ -39,17 +40,20 @@ export async function getTodoList(done: boolean = false, page: number = 0): Prom
  * @returns Todo object, or 404 error if not found
  */
 export async function getTodo(id: string): Promise<Todo> {
-  try {
-    const res = await axiosInstance.get('/todo/' + id);
-    if (typeof res.data !== 'object') {
-      throw new Error('Invalid response from server');
-    }
-
-    return res.data;
-  }
-  catch (error) {
-    throw error;
-  }
+  return new Promise((resolve, reject) => {
+    axiosInstance.get('/todo/' + id)
+      .then(res => {
+        if (typeof res.data !== 'object') {
+          reject('Invalid response from server');
+        }
+        else {
+          resolve(res.data);
+        }
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
 }
 
 /**
@@ -59,24 +63,27 @@ export async function getTodo(id: string): Promise<Todo> {
  * creation failed or the object already existed
  */
 export async function createTodo(todo: Todo): Promise<string> {
-  try {
-    const res = await axiosInstance.put('/todo', todo);
-    const data: PutResponse = res.data;
-    if (!data.success) {
-      throw new Error(data.message);
-    }
-    if (data.updatedExisting) {
-      throw new Error('Server error: updatedExisting is true');
-    }
-    if (typeof data.id !== 'string') {
-      throw new Error('Server error: id is not a string or not present');
-    }
-
-    return data.id;
-  }
-  catch (error) {
-    throw error;
-  }
+  return new Promise((resolve, reject) => {
+    axiosInstance.put('/todo', todo)
+      .then(res => {
+        const data: PutResponse = res.data;
+        if (!data.success) {
+          reject(data.message);
+        }
+        else if (data.updatedExisting) {
+          reject('Server error: updatedExisting is true');
+        }
+        else if (typeof data.id !== 'string') {
+          reject('Server error: id is not a string or not present');
+        }
+        else {
+          resolve(data.id);
+        }
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
 }
 
 /**
@@ -87,25 +94,28 @@ export async function createTodo(todo: Todo): Promise<string> {
  * failed or the object didn't already exist
  */
 export async function updateTodo(todo: Todo): Promise<string> {
-  try {
-    const res = await axiosInstance.put('/todo', todo);
-    const data: PutResponse = res.data;
-    if (!data.success) {
-      throw new Error(data.message);
-    }
-    if (!data.updatedExisting) {
-      deleteTodo(res.data.id);
-      throw new Error('Server error: updatedExisting is false');
-    }
-    if (typeof data.id !== 'string') {
-      throw new Error('Server error: id is not a string or not present');
-    }
-
-    return data.id;
-  }
-  catch (error) {
-    throw error;
-  }
+  return new Promise((resolve, reject) => {
+    axiosInstance.put('/todo', todo)
+      .then(res => {
+        const data: PutResponse = res.data;
+        if (!data.success) {
+          reject(data.message);
+        }
+        else if (!data.updatedExisting) {
+          deleteTodo(res.data.id);
+          reject('Server error: updatedExisting is false');
+        }
+        else if (typeof data.id !== 'string') {
+          reject('Server error: id is not a string or not present');
+        }
+        else {
+          resolve(data.id);
+        }
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
 }
 
 /**
@@ -114,18 +124,21 @@ export async function updateTodo(todo: Todo): Promise<string> {
  * @returns success boolean
  */
 export async function deleteTodo(id: string): Promise<boolean> {
-  try {
-    const res = await axiosInstance.delete('/todo/' + id);
-    const data: DeleteResponse = res.data;
-    if (!data.success) {
-      throw new Error(data.message);
-    }
-
-    return data.success;
-  }
-  catch (error) {
-    throw error;
-  }
+  return new Promise((resolve, reject) => {
+    axiosInstance.delete('/todo/' + id)
+      .then(res => {
+        const data: DeleteResponse = res.data;
+        if (!data.success) {
+          reject(data.message);
+        }
+        else {
+          resolve(data.success);
+        }
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
 }
 
 /**
@@ -133,15 +146,18 @@ export async function deleteTodo(id: string): Promise<boolean> {
  * @returns Promise<Column[]> list of columns
  */
 export async function getColumns(): Promise<Column[]> {
-  try {
-    const res = await axiosInstance.get('/columns');
-    if (typeof res.data !== 'object') {
-      throw new Error('Invalid response from server');
-    }
-
-    return res.data;
-  }
-  catch (error) {
-    throw error;
-  }
+  return new Promise((resolve, reject) => {
+    axiosInstance.get('/columns')
+      .then(res => {
+        if (typeof res.data !== 'object') {
+          reject('Invalid response from server');
+        }
+        else {
+          resolve(res.data);
+        }
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
 }

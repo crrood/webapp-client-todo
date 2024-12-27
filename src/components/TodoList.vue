@@ -68,13 +68,6 @@ const state: State = reactive({
 })
 
 function getTodoList() {
-  const path = "/todo";
-  const config = {
-    params: {
-      page: state.pageNumber,
-      done: state.showDone.toString()
-    }
-  }
   API.getTodoList(state.showDone, state.pageNumber)
     .then((res) => {
       state.todos = res;
@@ -86,7 +79,6 @@ function getTodoList() {
 
 getTodoList();
 
-const columnsPath = "/columns";
 API.getColumns()
   .then(res => {
     state.columns = res;
@@ -107,12 +99,6 @@ function createNewTodo() {
     notes: "",
   }
 
-  const path = "/todo";
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-  }
   API.createTodo(newTodoData)
     .then(res => {
       console.log(res);
