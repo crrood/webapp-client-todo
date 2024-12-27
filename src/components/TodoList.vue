@@ -1,8 +1,8 @@
 <template>
-  <div class="flex gap-4 justify-center pt-2">
+  <div class="flex gap-4 justify-center items-center pt-2">
     <!-- Create new -->
     <button
-      class="rounded-full size-4 p-2 items-center bg-green-700"
+      class="flex h-8 w-8 rounded-full justify-center bg-green-700"
       @click="createNewTodo"
     >
       <Icon
