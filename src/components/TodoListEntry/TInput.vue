@@ -17,13 +17,13 @@ import { onMounted, ref } from 'vue';
 const props = defineProps(['columnData', 'startingValue', 'uniqueId']);
 const data = ref(props.startingValue);
 const emit = defineEmits(['update:data']);
-var inputEl: HTMLInputElement;
+let inputEl: HTMLInputElement;
 
 onMounted(() => {
   inputEl = document.querySelector(`#${props.uniqueId}`)!;
 });
 
-function inputFocused(event: FocusEvent) {
+function inputFocused() {
   inputEl.readOnly = false;
   inputEl.focus();
   inputEl.select();

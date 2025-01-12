@@ -7,16 +7,18 @@
       "urgency": "High",
       "impact": "High",
       "effort": "High",
-      "notes": "This is a note"
+      "notes": "This is a note",
+      "snoozeUntil": ""
     },
     {
       "name": "Publish to github",
       "done": "false",
-      "status": "Todo",
+      "status": "Waiting",
       "urgency": "Medium",
       "impact": "Medium",
       "effort": "Low",
-      "notes": "https://www.github.com/crrood"
+      "notes": "https://www.github.com/crrood",
+      "snoozeUntil": "2026-01-01"
     }
   ],
   "columns": [
@@ -39,34 +41,39 @@
       "order": 3,
       "options": [
         {
+          "name": "To check",
+          "color": "light-blue",
+          "priority": 1
+        },
+        {
           "name": "Active",
           "color": "yellow",
-          "priority": 1
+          "priority": 2
         },
         {
           "name": "Todo",
           "color": "red",
-          "priority": 2
+          "priority": 3
         },
         {
           "name": "Pending",
           "color": "purple",
-          "priority": 3
+          "priority": 4
         },
         {
           "name": "Waiting",
           "color": "dark-gray",
-          "priority": 4
+          "priority": 5
         },
         {
           "name": "Closed",
           "color": "light-gray",
-          "priority": 5
+          "priority": 6
         },
         {
           "name": "Done",
           "color": "green",
-          "priority": 6
+          "priority": 7
         }
       ]
     },

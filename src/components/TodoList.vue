@@ -45,12 +45,12 @@
 </template>
 
 <script setup lang="ts">
-import * as API from "@/api";
+import type { Column, Todo } from '@/Interfaces';
+import * as API from "@/api.ts";
+import TodoListEntry from '@components/TodoListEntry/TodoListEntry.vue';
 import { Icon } from "@iconify/vue";
 import { CheckboxIndicator, CheckboxRoot } from 'radix-vue';
 import { reactive } from 'vue';
-import type { Column, Todo } from '../Interfaces';
-import TodoListEntry from './TodoListEntry/TodoListEntry.vue';
 
 interface State {
   isFetchingColumns: boolean

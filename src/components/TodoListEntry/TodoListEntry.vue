@@ -10,13 +10,19 @@
       :uniqueId="column.field + todo._id.$oid"
       @update:data="updateTodoValue"
     />
-    <div class="flex justify-end">
+    <div class="flex justify-end gap-2">
+      <!-- Snooze -->
+      <TDatePicker
+        v-model="props.todo.snooze"
+        :update:modelValue="snoozeDatePicked"
+      />
+      <!-- Delete -->
       <button
         class="p-1 rounded-full items-center bg-red-600"
         @click="deleteTodo"
       >
         <Icon
-          icon="iconamoon:sign-minus-bold"
+          icon="iconamoon:close-bold"
           class="w-4 text-white"
           width="unset"
         />
@@ -27,10 +33,23 @@
 
 <script setup lang="ts">
 import * as API from '@/api';
+import TDatePicker from '@components/TodoListEntry/TDatePicker.vue';
 import { Icon } from "@iconify/vue";
+import type { DateValue } from '@internationalized/date';
+import { reactive } from 'vue';
 
 const props = defineProps(["todo", "columns"]);
+const state = reactive({
+  pickingDate: false,
+});
 const emit = defineEmits(['refresh']);
+
+function snoozeDatePicked(date: DateValue) {
+  state.pickingDate = false;
+
+  props.todo.snooze = date;
+  // saveTodoData();
+}
 
 function updateTodoValue(field: string, value: string) {
   props.todo[field] = value;
@@ -39,7 +58,7 @@ function updateTodoValue(field: string, value: string) {
 
 function saveTodoData() {
   API.updateTodo(props.todo)
-    .then(res => {
+    .then(() => {
       emit('refresh');
     })
     .catch(error => {
@@ -49,7 +68,7 @@ function saveTodoData() {
 
 function deleteTodo() {
   API.deleteTodo(props.todo)
-    .then(res => {
+    .then(() => {
       emit('refresh');
     })
     .catch(error => {

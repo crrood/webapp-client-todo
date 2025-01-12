@@ -5,10 +5,7 @@
         class="bg-primary text-white p-2 m-2 grow rounded-sm"
         :class="'bg-' + selectedColor + '-sl'"
       >
-        <SelectValue
-          :placeholder="startingValue"
-          class=""
-        />
+        <SelectValue :placeholder="startingValue" />
       </SelectTrigger>
 
       <SelectPortal>
