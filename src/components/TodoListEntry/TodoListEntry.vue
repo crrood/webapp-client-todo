@@ -5,7 +5,7 @@
       v-for="(column, index) in columns"
       :key="index"
       class="flex justify-center grow"
-      :starting-value="state.todo[column.field]"
+      :starting-value="state.todo.data[column.field]"
       :column-data="column"
       :unique-id="column.field + state.todo._id?.$oid"
       @update:data="updateTodoValue"
@@ -57,8 +57,8 @@ function snoozeDatePicked(date: DateValue) {
   // saveTodoData();
 }
 
-function updateTodoValue(field: keyof Todo, value: string) {
-  state.todo[field] = value;
+function updateTodoValue(field: keyof Todo["data"], value: string) {
+  state.todo.data[field] = value;
   saveTodoData();
 }
 

@@ -92,13 +92,15 @@ API.getColumns()
 
 function createNewTodo() {
   const newTodoData: Todo = {
-    name: "New Todo",
-    done: "false",
-    status: "Todo",
-    urgency: "Medium",
-    impact: "Medium",
-    effort: "Medium",
-    notes: "",
+    data: {
+      name: "New Todo",
+      done: "false",
+      status: "Todo",
+      urgency: "Medium",
+      impact: "Medium",
+      effort: "Medium",
+      notes: "",
+    }
   }
 
   API.createTodo(newTodoData)

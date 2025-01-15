@@ -1,24 +1,28 @@
 {
   "todo": [
     {
-      "name": "Make a todo app",
-      "done": "false",
-      "status": "Active",
-      "urgency": "High",
-      "impact": "High",
-      "effort": "High",
-      "notes": "This is a note",
-      "snoozeUntil": ""
+      "data": {
+        "name": "Make a todo app",
+        "done": "false",
+        "status": "Active",
+        "urgency": "High",
+        "impact": "High",
+        "effort": "High",
+        "notes": "This is a note",
+        "snoozeUntil": ""
+      }
     },
     {
-      "name": "Publish to github",
-      "done": "false",
-      "status": "Waiting",
-      "urgency": "Medium",
-      "impact": "Medium",
-      "effort": "Low",
-      "notes": "https://www.github.com/crrood",
-      "snoozeUntil": "2026-01-01"
+      "data": {
+        "name": "Publish to github",
+        "done": "false",
+        "status": "Waiting",
+        "urgency": "Medium",
+        "impact": "Medium",
+        "effort": "Low",
+        "notes": "https://www.github.com/crrood",
+        "snoozeUntil": "2026-01-01"
+      }
     }
   ],
   "columns": [

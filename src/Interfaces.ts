@@ -2,17 +2,19 @@ export interface Todo {
   _id?: {
     $oid: string
   }
-  name: string
-  done: string
-  status: string
-  urgency: string
-  impact: string
-  effort: string
-  notes: string
+  data: {
+    name: string
+    done: string
+    status: string
+    urgency: string
+    impact: string
+    effort: string
+    notes: string
+  }
 }
 
 export interface Column {
-  field: keyof Todo
+  field: keyof Todo["data"]
   component: string
   required: boolean
   order: number

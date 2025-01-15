@@ -37,13 +37,15 @@ function append(data: string = "--------------------") {
 
 async function runTests() {
   const testData: Todo = {
-    name: "Test Todo",
-    done: "false",
-    status: "Todo",
-    urgency: "Medium",
-    impact: "Medium",
-    effort: "Medium",
-    notes: "",
+    data: {
+      name: "Test Todo",
+      done: "false",
+      status: "Todo",
+      urgency: "Medium",
+      impact: "Medium",
+      effort: "Medium",
+      notes: "",
+    }
   }
   append('Running tests');
   append();
@@ -75,6 +77,7 @@ async function runTests() {
       }
     });
     if (!todoWithIdPresent) {
+      append('Inserted ID not found in collection');
       throw new Error('Inserted ID not found in collection');
     }
 
@@ -83,13 +86,15 @@ async function runTests() {
     append('Updating todo');
     const updatedData: Todo = {
       _id: { $oid: insertedId },
-      name: "Updated Todo",
-      done: "true",
-      status: "Todo",
-      urgency: "Medium",
-      impact: "Medium",
-      effort: "Medium",
-      notes: "",
+      data: {
+        name: "Updated Todo",
+        done: "true",
+        status: "Todo",
+        urgency: "Medium",
+        impact: "Medium",
+        effort: "Medium",
+        notes: "",
+      }
     }
     append(JSON.stringify(updatedData));
     await API.updateTodo(updatedData);
@@ -101,6 +106,7 @@ async function runTests() {
     append('Updated data (client): ' + JSON.stringify(updatedData));
     append('Updated todo (server): ' + JSON.stringify(updatedTodo));
     if (JSON.stringify(updatedTodo) != JSON.stringify(updatedData)) {
+      append('Updated data does not match retrieved data');
       throw new Error('Updated data does not match retrieved data');
     }
 
@@ -110,10 +116,14 @@ async function runTests() {
     await API.deleteTodo(insertedId);
     try {
       await API.getTodo(insertedId);
+      append('Todo not deleted');
       throw new Error('Todo not deleted');
     } catch {
       append('Todo deleted');
     }
+    append();
+
+    append('All tests passed!');
 
   } catch (error) {
     append();

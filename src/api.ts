@@ -12,12 +12,15 @@ export const axiosInstance: AxiosInstance = axios.create({
  * @returns Promise<Todo[]> list of todos
  */
 export async function getTodoList(done: boolean = false, page: number = 0): Promise<Todo[]> {
+  const query = { "data.done": done.toString() };
+  const queryString = encodeURIComponent(JSON.stringify(query));
   const config = {
     params: {
-      done: done,
+      query: queryString,
       page: page,
     }
   };
+
   return new Promise((resolve, reject) => {
     axiosInstance.get('/todo', config)
       .then(res => {
