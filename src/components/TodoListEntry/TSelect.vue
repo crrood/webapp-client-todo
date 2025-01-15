@@ -12,10 +12,10 @@
         <SelectContent>
           <SelectViewport class="p-[5px]">
             <SelectItem
-              class="p-2"
-              :class="'bg-' + option.color + '-sl'"
               v-for="option in props.columnData.options"
               :key="option.name"
+              class="p-2"
+              :class="'bg-' + option.color + '-sl'"
               :value="option.name"
             >
               <SelectItemText class="text-white select-none">

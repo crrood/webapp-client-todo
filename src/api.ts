@@ -128,7 +128,7 @@ export async function deleteTodo(data: string | Todo): Promise<boolean> {
   if (typeof data === 'string') {
     id = data;
   }
-  else if (typeof data === 'object' && data.hasOwnProperty('_id') && data._id?.$oid) {
+  else if (typeof data === 'object' && Object.prototype.hasOwnProperty.call(data, '_id') && data._id?.$oid) {
     id = data._id?.$oid;
   }
   else {

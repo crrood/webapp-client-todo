@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p class="p-6 text-white">{{ state.response }}</p>
+    <p class="p-6 text-white">
+      {{ state.response }}
+    </p>
   </div>
 </template>
 

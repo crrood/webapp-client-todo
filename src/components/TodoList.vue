@@ -18,8 +18,8 @@
       </label>
       <CheckboxRoot
         v-model:checked="state.showDone"
-        @update:checked="getTodoList"
         class="flex h-5 w-5 items-center justify-center rounded-md bg-white"
+        @update:checked="getTodoList"
       >
         <CheckboxIndicator class="bg-white h-full w-full rounded-md flex items-center justify-center">
           <Icon
@@ -32,9 +32,11 @@
     </div>
   </div>
   <!-- Todo items -->
-  <div class="bg-primary">
+  <div
+    v-if="!state.isFetchingColumns"
+    class="bg-primary"
+  >
     <TodoListEntry
-      v-if="!state.isFetchingColumns"
       v-for="todo in state.todos"
       :key="todo._id?.$oid"
       :todo="todo"
@@ -81,7 +83,7 @@ getTodoList();
 
 API.getColumns()
   .then(res => {
-    state.columns = res;
+    state.columns = res as Column[];
     state.isFetchingColumns = false;
   })
   .catch(error => {
@@ -100,7 +102,7 @@ function createNewTodo() {
   }
 
   API.createTodo(newTodoData)
-    .then(res => {
+    .then(() => {
       getTodoList();
     })
     .catch(error => {

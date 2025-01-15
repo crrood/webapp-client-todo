@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="p-4 font-bold text-2xl text-white">Test API</div>
+    <div class="p-4 font-bold text-2xl text-white">
+      Test API
+    </div>
     <hr>
     <div
       id="results"
@@ -29,7 +31,7 @@ onMounted(async () => {
   runTests();
 });
 
-function append(data: any = "--------------------") {
+function append(data: string = "--------------------") {
   resultsEl.innerText += "\n" + data;
 }
 
@@ -109,12 +111,12 @@ async function runTests() {
     try {
       await API.getTodo(insertedId);
       throw new Error('Todo not deleted');
-    } catch (error) {
+    } catch {
       append('Todo deleted');
     }
 
   } catch (error) {
-    append(error);
+    append();
     throw error;
   }
 }

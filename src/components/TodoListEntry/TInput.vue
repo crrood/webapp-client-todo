@@ -1,20 +1,26 @@
 <template>
   <div class="col-span-2">
     <input
-      v-model="data"
       :id="uniqueId"
+      v-model="data"
+      readonly
       @focusin="inputFocused"
       @focusout="inputUnfocused"
       @keydown="keyPressed"
-      readonly
-    />
+    >
   </div>
 </template>
 
 <script setup lang="ts">
+import type { Column } from '@/Interfaces';
 import { onMounted, ref } from 'vue';
 
-const props = defineProps(['columnData', 'startingValue', 'uniqueId']);
+const props = defineProps<{
+  columnData: Column,
+  startingValue: string,
+  uniqueId: string,
+}>();
+
 const data = ref(props.startingValue);
 const emit = defineEmits(['update:data']);
 let inputEl: HTMLInputElement;

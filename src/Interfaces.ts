@@ -12,7 +12,7 @@ export interface Todo {
 }
 
 export interface Column {
-  field: string
+  field: keyof Todo
   component: string
   required: boolean
   order: number

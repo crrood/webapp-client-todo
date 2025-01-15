@@ -1,19 +1,19 @@
 <template>
   <div class="grid grid-cols-10 space-x-4 mx-4 my-2 px-4 items-center bg-primary-light text-white">
     <component
-      v-for="(column, index) in columns"
-      class="flex justify-center grow"
       :is="column.component"
+      v-for="(column, index) in columns"
       :key="index"
-      :startingValue="todo[column.field]"
-      :columnData="column"
-      :uniqueId="column.field + todo._id.$oid"
+      class="flex justify-center grow"
+      :starting-value="state.todo[column.field]"
+      :column-data="column"
+      :unique-id="column.field + state.todo._id?.$oid"
       @update:data="updateTodoValue"
     />
     <div class="flex justify-end gap-2">
       <!-- Snooze -->
       <TDatePicker
-        v-model="props.todo.snooze"
+        v-model="state.todo.snooze"
         :update:modelValue="snoozeDatePicked"
       />
       <!-- Delete -->
@@ -33,13 +33,19 @@
 
 <script setup lang="ts">
 import * as API from '@/api';
+import type { Column, Todo } from '@/Interfaces';
 import TDatePicker from '@components/TodoListEntry/TDatePicker.vue';
 import { Icon } from "@iconify/vue";
 import type { DateValue } from '@internationalized/date';
 import { reactive } from 'vue';
 
-const props = defineProps(["todo", "columns"]);
+const props = defineProps<{
+  todo: Todo,
+  columns: Column[],
+}>();
+
 const state = reactive({
+  todo: props.todo,
   pickingDate: false,
 });
 const emit = defineEmits(['refresh']);
@@ -47,17 +53,17 @@ const emit = defineEmits(['refresh']);
 function snoozeDatePicked(date: DateValue) {
   state.pickingDate = false;
 
-  props.todo.snooze = date;
+  state.todo.snooze = date;
   // saveTodoData();
 }
 
-function updateTodoValue(field: string, value: string) {
-  props.todo[field] = value;
+function updateTodoValue(field: keyof Todo, value: string) {
+  state.todo[field] = value;
   saveTodoData();
 }
 
 function saveTodoData() {
-  API.updateTodo(props.todo)
+  API.updateTodo(state.todo)
     .then(() => {
       emit('refresh');
     })
@@ -67,7 +73,7 @@ function saveTodoData() {
 }
 
 function deleteTodo() {
-  API.deleteTodo(props.todo)
+  API.deleteTodo(state.todo)
     .then(() => {
       emit('refresh');
     })
