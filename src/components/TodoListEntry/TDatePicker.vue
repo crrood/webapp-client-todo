@@ -7,10 +7,10 @@
       @update:model-value="date => dateUpdated(date)"
     >
       <div class="flex justify-end">
-        <DatePickerTrigger class="p-1 w-min rounded-full bg-secondary">
+        <DatePickerTrigger class="flex justify-center p-1 w-20 rounded-full bg-secondary">
           <Icon
             icon="iconamoon:clock"
-            class="w-4 text-white"
+            class="w-6 text-white"
             width="unset"
           />
         </DatePickerTrigger>

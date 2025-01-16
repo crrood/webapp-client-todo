@@ -1,9 +1,9 @@
 <template>
   <nav
-    class="grid grid-cols-8 gap-4 p-4 items-center align-middle bg-primary-light text-white"
+    class="grid grid-cols-8 gap-4 p-4 items-center bg-primary-light text-white"
     role="navigation"
   >
-    <div class="">
+    <div>
       <router-link
         class=""
         to="/"
@@ -15,7 +15,7 @@
       </router-link>
     </div>
 
-    <div class="col-span-6 text-4xl">
+    <div class="col-span-6 text-center text-4xl">
       <router-link
         class=""
         to="/todo"
@@ -25,11 +25,14 @@
     </div>
 
     <div class="flex flex-col gap-2">
-      <button class="btn-primary">
-        <router-link to="/testAPI">
+      <router-link
+        to="/testAPI"
+        class="btn-primary"
+      >
+        <button>
           Test API
-        </router-link>
-      </button>
+        </button>
+      </router-link>
       <button class="btn-warning text-l">
         <a
           href="/api/resetDB"

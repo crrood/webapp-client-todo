@@ -9,7 +9,7 @@ a {
 
 /* BUTTONS */
 .btn-primary {
-  @apply p-2 px-3 rounded-3xl bg-secondary hover:bg-secondary-dark text-white font-bold;
+  @apply flex justify-center p-2 px-3 rounded-3xl bg-secondary hover:bg-secondary-dark text-white font-bold;
 }
 
 .btn-warning {
