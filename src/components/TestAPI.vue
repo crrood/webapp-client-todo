@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Todo } from '@/Interfaces';
+import type { Todo } from '@/Types';
 import * as API from '@/api';
 import { onMounted } from 'vue';
 
@@ -45,6 +45,7 @@ async function runTests() {
       impact: "Medium",
       effort: "Medium",
       notes: "",
+      snoozeUntil: "",
     }
   }
   append('Running tests');
@@ -94,6 +95,7 @@ async function runTests() {
         impact: "Medium",
         effort: "Medium",
         notes: "",
+        snoozeUntil: "",
       }
     }
     append(JSON.stringify(updatedData));

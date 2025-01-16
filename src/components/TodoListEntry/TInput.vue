@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Column } from '@/Interfaces';
+import type { Column } from '@/Types';
 import { onMounted, ref } from 'vue';
 
 const props = defineProps<{

@@ -17,10 +17,10 @@
 </template>
 
 <script setup lang="ts">
+import type { Column } from '@/Types';
 import { Icon } from "@iconify/vue";
 import { CheckboxIndicator, CheckboxRoot } from 'radix-vue';
 import { ref } from 'vue';
-import type { Column } from '../../Interfaces';
 
 const props = defineProps<{
   startingValue: string,

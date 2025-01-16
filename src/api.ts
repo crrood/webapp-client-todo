@@ -1,5 +1,5 @@
+import type { Column, DeleteResponse, PutResponse, Todo } from "@/Types";
 import axios, { type AxiosInstance } from "axios";
-import type { Column, DeleteResponse, PutResponse, Todo } from "./Interfaces";
 
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_SERVER_HOST + ":" + import.meta.env.VITE_SERVER_PORT + '/api/',

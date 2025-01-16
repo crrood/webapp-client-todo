@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import * as API from '@/api';
-import type { Column, Todo } from '@/Interfaces';
+import type { Column, Todo } from '@/Types';
 import { Icon } from "@iconify/vue";
 import { reactive } from 'vue';
 

@@ -30,6 +30,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Column, SelectOptions } from '@/Types';
 import {
   SelectContent,
   SelectItem,
@@ -41,7 +42,6 @@ import {
   SelectViewport
 } from 'radix-vue';
 import { computed, ref, watch } from 'vue';
-import type { Column, SelectOptions } from '../../Interfaces';
 
 const props = defineProps<{
   startingValue: string,

@@ -110,7 +110,7 @@ import {
   DatePickerTrigger
 } from 'radix-vue';
 
-import type { Column } from '@/Interfaces';
+import type { Column } from '@/Types';
 import { getLocalTimeZone, parseDate, today, type DateValue } from '@internationalized/date';
 
 const props = defineProps<{

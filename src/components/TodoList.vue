@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Column, Todo } from '@/Interfaces';
+import type { Column, Todo } from '@/Types';
 import * as API from "@/api.ts";
 import TodoListEntry from '@components/TodoListEntry/TodoListEntry.vue';
 import { Icon } from "@iconify/vue";
