@@ -99,6 +99,7 @@ function createNewTodo() {
       urgency: "Medium",
       impact: "Medium",
       effort: "Medium",
+      snoozeUntil: "",
       notes: "",
     }
   }

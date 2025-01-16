@@ -1,38 +1,19 @@
-<script setup lang="ts">
-import { Icon } from '@iconify/vue';
-import {
-  DatePickerArrow,
-  DatePickerCalendar,
-  DatePickerCell,
-  DatePickerCellTrigger,
-  DatePickerContent,
-  DatePickerField,
-  DatePickerGrid,
-  DatePickerGridBody,
-  DatePickerGridHead,
-  DatePickerGridRow,
-  DatePickerHeadCell,
-  DatePickerHeader,
-  DatePickerHeading,
-  DatePickerNext,
-  DatePickerPrev,
-  DatePickerRoot,
-  DatePickerTrigger
-} from 'radix-vue';
-</script>
-
 <template>
   <div class="flex flex-col gap-2 mx-2">
-    <DatePickerRoot id="date-field">
-      <DatePickerField class="flex select-none bg-secondary items-center justify-between rounded-full">
-        <DatePickerTrigger class="p-1 rounded-full items-center bg-secondary">
+    <DatePickerRoot
+      :id="props.uniqueId"
+      :default-value="startingDate"
+      @update:model-value="date => dateUpdated(date)"
+    >
+      <div class="flex justify-end">
+        <DatePickerTrigger class="p-1 w-min rounded-full bg-secondary">
           <Icon
             icon="iconamoon:clock"
             class="w-4 text-white"
             width="unset"
           />
         </DatePickerTrigger>
-      </DatePickerField>
+      </div>
 
       <DatePickerContent
         :side-offset="4"
@@ -106,3 +87,44 @@ import {
     </DatePickerRoot>
   </div>
 </template>
+
+<script setup lang="ts">
+import { Icon } from '@iconify/vue';
+import {
+  DatePickerArrow,
+  DatePickerCalendar,
+  DatePickerCell,
+  DatePickerCellTrigger,
+  DatePickerContent,
+  DatePickerGrid,
+  DatePickerGridBody,
+  DatePickerGridHead,
+  DatePickerGridRow,
+  DatePickerHeadCell,
+  DatePickerHeader,
+  DatePickerHeading,
+  DatePickerNext,
+  DatePickerPrev,
+  DatePickerRoot,
+  DatePickerTrigger
+} from 'radix-vue';
+
+import type { Column } from '@/Interfaces';
+import { getLocalTimeZone, parseDate, today, type DateValue } from '@internationalized/date';
+
+const props = defineProps<{
+  columnData: Column,
+  startingValue: string,
+  uniqueId: string,
+}>();
+
+const emit = defineEmits(['update:data']);
+const startingDate: DateValue = props.startingValue === "" ? today(getLocalTimeZone()) : parseDate(props.startingValue);
+
+function dateUpdated(date: DateValue | undefined) {
+  if (date === undefined) {
+    return;
+  }
+  emit('update:data', 'snoozeUntil', date.toString());
+}
+</script>

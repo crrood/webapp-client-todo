@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-10 space-x-4 mx-4 my-2 px-4 items-center bg-primary-light text-white">
+  <div class="grid grid-cols-11 space-x-4 mx-4 my-2 px-4 items-center bg-primary-light text-white">
     <component
       :is="column.component"
       v-for="(column, index) in columns"
@@ -11,11 +11,6 @@
       @update:data="updateTodoValue"
     />
     <div class="flex justify-end gap-2">
-      <!-- Snooze -->
-      <TDatePicker
-        v-model="state.todo.snooze"
-        :update:modelValue="snoozeDatePicked"
-      />
       <!-- Delete -->
       <button
         class="p-1 rounded-full items-center bg-red-600"
@@ -34,9 +29,7 @@
 <script setup lang="ts">
 import * as API from '@/api';
 import type { Column, Todo } from '@/Interfaces';
-import TDatePicker from '@components/TodoListEntry/TDatePicker.vue';
 import { Icon } from "@iconify/vue";
-import type { DateValue } from '@internationalized/date';
 import { reactive } from 'vue';
 
 const props = defineProps<{
@@ -49,13 +42,6 @@ const state = reactive({
   pickingDate: false,
 });
 const emit = defineEmits(['refresh']);
-
-function snoozeDatePicked(date: DateValue) {
-  state.pickingDate = false;
-
-  state.todo.snooze = date;
-  // saveTodoData();
-}
 
 function updateTodoValue(field: keyof Todo["data"], value: string) {
   state.todo.data[field] = value;

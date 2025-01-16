@@ -155,6 +155,12 @@
       "component": "TInput",
       "required": false,
       "order": 7
+    },
+    {
+      "field": "snoozeUntil",
+      "component": "TDatePicker",
+      "required": false,
+      "order": 8
     }
   ]
 }

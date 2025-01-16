@@ -10,6 +10,7 @@ export interface Todo {
     impact: string
     effort: string
     notes: string
+    snoozeUntil: string
   }
 }
 
