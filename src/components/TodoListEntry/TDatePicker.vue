@@ -10,7 +10,7 @@
         <DatePickerTrigger class="flex justify-center p-1 w-20 rounded-full bg-secondary">
           <Icon
             icon="iconamoon:clock"
-            class="w-6 text-white"
+            class="w-6"
             width="unset"
           />
         </DatePickerTrigger>

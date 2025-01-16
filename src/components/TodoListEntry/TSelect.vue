@@ -2,23 +2,23 @@
   <div class="flex justify-center">
     <SelectRoot v-model="selected">
       <SelectTrigger
-        class="bg-primary text-white p-2 m-2 grow rounded-sm"
+        class="p-2 mt-1 mb-1 grow rounded-sm"
         :class="'bg-' + selectedColor + '-sl'"
       >
         <SelectValue :placeholder="startingValue" />
       </SelectTrigger>
 
       <SelectPortal>
-        <SelectContent>
+        <SelectContent class="">
           <SelectViewport class="p-[5px]">
             <SelectItem
               v-for="option in props.columnData.options"
               :key="option.name"
-              class="p-2"
+              class="grow p-2"
               :class="'bg-' + option.color + '-sl'"
               :value="option.name"
             >
-              <SelectItemText class="text-white select-none">
+              <SelectItemText class="select-none">
                 {{ option.name }}
               </SelectItemText>
             </SelectItem>

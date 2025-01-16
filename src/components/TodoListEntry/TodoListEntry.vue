@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-11 space-x-4 mx-4 my-2 px-4 items-center bg-primary-light text-white">
+  <div class="grid grid-cols-11 space-x-4 mx-4 my-2 px-4 items-center bg-primary-light">
     <component
       :is="column.component"
       v-for="(column, index) in columns"
@@ -18,7 +18,7 @@
       >
         <Icon
           icon="iconamoon:close-bold"
-          class="w-4 text-white"
+          class="w-4"
           width="unset"
         />
       </button>

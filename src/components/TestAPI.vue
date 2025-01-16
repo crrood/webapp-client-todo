@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="p-4 font-bold text-2xl text-white">
+    <div class="p-4 font-bold text-2xl">
       Test API
     </div>
     <hr>

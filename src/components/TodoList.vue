@@ -7,12 +7,12 @@
     >
       <Icon
         icon="iconamoon:sign-plus-bold"
-        class="w-5 text-white"
+        class="w-5"
         width="unset"
       />
     </button>
     <!-- Filters and sorting -->
-    <div class="flex gap-2 px-4 py-2 items-center text-white">
+    <div class="flex gap-2 px-4 py-2 items-center">
       <label class="">
         Show Done
       </label>

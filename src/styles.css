@@ -7,6 +7,10 @@ a {
   @apply font-bold hover:text-slate-200;
 }
 
+.text-body {
+  @apply text-white text-lg;
+}
+
 /* BUTTONS */
 .btn-primary {
   @apply flex justify-center p-2 px-3 rounded-3xl bg-secondary hover:bg-secondary-dark text-white font-bold;
