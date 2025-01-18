@@ -8,7 +8,7 @@ a {
 }
 
 .text-body {
-  @apply text-white text-lg;
+  @apply text-white xl:text-lg;
 }
 
 /* BUTTONS */

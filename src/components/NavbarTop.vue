@@ -15,7 +15,7 @@
       </router-link>
     </div>
 
-    <div class="col-span-6 text-center text-4xl">
+    <div class="col-span-6 text-center text-5xl">
       <router-link
         class=""
         to="/todo"

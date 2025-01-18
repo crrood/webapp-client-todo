@@ -9,12 +9,15 @@
       </SelectTrigger>
 
       <SelectPortal>
-        <SelectContent class="">
+        <SelectContent
+          position="popper"
+          class="select-none"
+        >
           <SelectViewport class="p-[5px]">
             <SelectItem
               v-for="option in props.columnData.options"
               :key="option.name"
-              class="grow p-2"
+              class="p-3"
               :class="'bg-' + option.color + '-sl'"
               :value="option.name"
             >
