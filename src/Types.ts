@@ -29,15 +29,9 @@ export interface SelectOptions {
   priority: number
 }
 
-export interface PutResponse {
+export interface ServerResponse {
   success: boolean
   message: string
   id?: string
   updatedExisting?: boolean
-}
-
-export interface DeleteResponse {
-  success: boolean
-  message: string
-  id?: string
 }

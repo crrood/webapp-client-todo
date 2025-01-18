@@ -1,4 +1,4 @@
-import type { Column, DeleteResponse, PutResponse, Todo } from "@/Types";
+import type { Column, ServerResponse, Todo } from "@/Types";
 import axios, { type AxiosInstance } from "axios";
 
 export const axiosInstance: AxiosInstance = axios.create({
@@ -69,7 +69,7 @@ export async function createTodo(todo: Todo): Promise<string> {
   return new Promise((resolve, reject) => {
     axiosInstance.put('/todo', todo)
       .then(res => {
-        const data: PutResponse = res.data;
+        const data: ServerResponse = res.data;
         if (!data.success) {
           reject(data.message);
         }
@@ -100,7 +100,7 @@ export async function updateTodo(todo: Todo): Promise<string> {
   return new Promise((resolve, reject) => {
     axiosInstance.put('/todo', todo)
       .then(res => {
-        const data: PutResponse = res.data;
+        const data: ServerResponse = res.data;
         if (!data.success) {
           reject(data.message);
         }
@@ -141,7 +141,7 @@ export async function deleteTodo(data: string | Todo): Promise<boolean> {
   return new Promise((resolve, reject) => {
     axiosInstance.delete('/todo/' + id)
       .then(res => {
-        const data: DeleteResponse = res.data;
+        const data: ServerResponse = res.data;
         if (!data.success) {
           reject(data.message);
         }
@@ -174,4 +174,26 @@ export async function getColumns(): Promise<Column[]> {
         reject(error);
       });
   });
+}
+
+/**
+ * Reset the DB to the state defined in shared/resources.json
+ * @returns Promise<string> ID of new test resource
+ */
+export async function resetDB(): Promise<string> {
+  return new Promise((resolve, reject) => {
+    axiosInstance.post('/resetDB')
+      .then(res => {
+        const data: ServerResponse = res.data;
+        if (!data.success) {
+          reject(data.message);
+        }
+        else {
+          resolve(data.message);
+        }
+      })
+      .catch(error => {
+        reject(error);
+      });
+  })
 }

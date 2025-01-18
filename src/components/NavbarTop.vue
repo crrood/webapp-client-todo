@@ -33,14 +33,21 @@
           Test API
         </button>
       </router-link>
-      <button class="btn-warning text-l">
-        <a
-          href="/api/resetDB"
-          class=""
-        >
-          Reset DB
-        </a>
+      <button
+        class="btn-warning text-l"
+        @click="resetDB()"
+      >
+        Reset DB
       </button>
     </div>
   </nav>
 </template>
+
+<script setup lang="ts">
+import * as API from "@/api.ts";
+
+function resetDB() {
+  console.log("Resetting DB");
+  API.resetDB();
+}
+</script>
