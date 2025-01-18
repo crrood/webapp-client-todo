@@ -19,6 +19,7 @@ export interface Column {
   component: string
   required: boolean
   order: number
+  width: string
   options?: SelectOptions[]
 }
 

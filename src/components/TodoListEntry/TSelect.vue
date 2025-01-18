@@ -1,5 +1,8 @@
 <template>
-  <div class="flex justify-center">
+  <div
+    class="flex justify-center"
+    :class="'col-span-' + props.columnData.width"
+  >
     <SelectRoot v-model="selected">
       <SelectTrigger
         class="p-2 mt-1 mb-1 grow rounded-sm"

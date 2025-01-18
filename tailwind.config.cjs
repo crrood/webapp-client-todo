@@ -25,6 +25,9 @@ module.exports = {
     '.bg-blue-sl',
     '.bg-light-blue-sl',
     '.bg-dark-blue-sl',
+    '.col-span-sm',
+    '.col-span-md',
+    '.col-span-lg',
   ],
   plugins: [],
 }

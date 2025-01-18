@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="'col-span-' + columnData.width">
     <CheckboxRoot
       v-model:checked="checked"
       class="flex h-[25px] w-[25px] items-center justify-center rounded-[4px] bg-white"

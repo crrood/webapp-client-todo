@@ -1,4 +1,29 @@
 <template>
+  <!-- Header -->
+  <!-- Column titles -->
+  <div class="grid grid-cols-11 space-x-4 mx-4 my-3 px-4">
+    <span
+      v-for="column in state.columns"
+      :key="column.field"
+      class="text-center font-semibold"
+      :class="'col-span-' + column.width"
+    >
+      {{ column.field.charAt(0).toUpperCase() + column.field.slice(1) }}
+    </span>
+  </div>
+  <!-- Todo items -->
+  <div
+    v-if="!state.isFetchingColumns"
+    class="bg-primary"
+  >
+    <TodoListEntry
+      v-for="todo in state.todos"
+      :key="todo._id?.$oid"
+      :todo="todo"
+      :columns="state.columns"
+      @refresh="getTodoList"
+    />
+  </div>
   <div class="flex gap-4 justify-center items-center pt-2">
     <!-- Create new -->
     <button
@@ -11,7 +36,7 @@
         width="unset"
       />
     </button>
-    <!-- Filters and sorting -->
+    <!-- Filters -->
     <div class="flex gap-2 px-4 py-2 items-center">
       <label class="">
         Show Done
@@ -30,19 +55,6 @@
         </CheckboxIndicator>
       </CheckboxRoot>
     </div>
-  </div>
-  <!-- Todo items -->
-  <div
-    v-if="!state.isFetchingColumns"
-    class="bg-primary"
-  >
-    <TodoListEntry
-      v-for="todo in state.todos"
-      :key="todo._id?.$oid"
-      :todo="todo"
-      :columns="state.columns"
-      @refresh="getTodoList"
-    />
   </div>
 </template>
 

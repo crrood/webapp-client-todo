@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col gap-2 mx-2">
+  <div
+    class="flex flex-col gap-2 mx-2"
+    :class="'col-span-' + columnData.width"
+  >
     <DatePickerRoot
       :id="props.uniqueId"
       :default-value="startingDate"

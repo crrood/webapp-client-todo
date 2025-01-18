@@ -11,6 +11,19 @@ a {
   @apply text-white xl:text-lg;
 }
 
+/* DYNAMIC GRID WIDTH */
+.col-span-sm {
+  @apply col-span-1;
+}
+
+.col-span-md {
+  @apply col-span-1;
+}
+
+.col-span-lg {
+  @apply col-span-2;
+}
+
 /* BUTTONS */
 .btn-primary {
   @apply flex justify-center p-2 px-3 rounded-3xl bg-secondary hover:bg-secondary-dark text-white font-bold;

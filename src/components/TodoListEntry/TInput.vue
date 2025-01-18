@@ -1,5 +1,5 @@
 <template>
-  <div class="col-span-2">
+  <div :class="'col-span-' + columnData.width">
     <input
       :id="uniqueId"
       v-model="data"
